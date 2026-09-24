@@ -42,6 +42,11 @@
       aspect-ratio: 1785 / 1400;
     }
 
+    /* Videos horizontales (Branding, Animación de Logo, Visuales) */
+    .landscape-row .gallery-item-wrapper {
+      aspect-ratio: 16 / 9;
+    }
+
     /* Owl Carousel Overrides */
     .owl-carousel .owl-stage-outer {
       padding-top: 10px;
@@ -260,9 +265,9 @@
                           class="img-fluid  animate-spin">Proyectos</a>
                     </li>
                     <li class="header-item">
-                      <a href="index.html#services" class="header-link hstack gap-2 fs-7 fw-bold text-dark"><img
+                      <a href="index.html#pricing" class="header-link hstack gap-2 fs-7 fw-bold text-dark"><img
                           src="assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
-                          class="img-fluid  animate-spin">Servicios</a>
+                          class="img-fluid  animate-spin">Planes</a>
                     </li>
                     <li class="header-item">
                       <a href="./contact.html" class="header-link hstack gap-2 fs-7 fw-bold text-dark"><img
@@ -399,23 +404,20 @@
         description: 'Diseños impactantes para todo tipo de eventos: corporativos, sociales, conciertos y más. Nos enfocamos en captar la atención de tu audiencia desde el primer segundo.',
         banner: 'assets/images/flyers/bannerEventos.jpg',
         gallery: [
-          { title: 'Conciertos y Festivales', items: ['assets/images/flyers/flyerconcierto.jpg', 'assets/images/flyers/flyerconcierto2.jpg', 'assets/images/flyers/flyerconcierto3.jpeg', 'assets/images/flyers/flyer concierto4.jpeg', 'assets/images/flyers/flyer concierto5.jpeg', 'assets/images/flyers/conciertoLanzamiento.png', 'assets/images/flyers/flyerEvent.jpg'] },
-          { title: 'Flyers Urbanos', items: ['assets/images/flyers/flyerUrbano.jpeg', 'assets/images/flyers/flyerUrbano2.jpeg', 'assets/images/flyers/flyerUrbano3.jpeg', 'assets/images/flyers/flyerUrbano4.jpeg', 'assets/images/flyers/flyerUrbano5.jpg'] },
-          { title: 'Flyers Night clubs', items: ['assets/images/flyers/nigth1.jpeg', 'assets/images/flyers/nigth2.jpeg', 'assets/images/flyers/night3.jpeg', 'assets/images/flyers/nigth4.jpeg', 'assets/images/flyers/night5.jpeg'] },
-          { title: 'Flyer de Cantina', items: ['assets/images/flyers/cantina1.jpeg', 'assets/images/flyers/cantina2.jpeg', 'assets/images/flyers/cantina3.jpeg', 'assets/images/flyers/cantina4.jpeg', 'assets/images/flyers/cantina5.jpeg'] }
+          { title: 'Flyers Premium', items: ['assets/images/flyers/flyerPremium1.jpg', 'assets/images/flyers/flyerPremium2.jpg', 'assets/images/flyers/flyerPremium3.jpg', 'assets/images/flyers/flyerPremium4.jpg', 'assets/images/flyers/flyerPremium5.jpg', 'assets/images/flyers/flyerPremium6.jpg'] },
+          { title: 'Conciertos y Festivales', items: ['assets/images/flyers/flyerconcierto.jpg', 'assets/images/flyers/flyerconcierto2.jpg', 'assets/images/flyers/flyerconcierto3.jpeg', 'assets/images/flyers/flyer concierto4.jpeg', 'assets/images/flyers/flyer concierto5.jpeg', 'assets/images/flyers/conciertoLanzamiento.png', 'assets/images/flyers/flyerEvent.jpg', 'assets/images/flyers/evento1.jpeg', 'assets/images/flyers/evento2.jpeg', 'assets/images/flyers/evento3.jpeg', 'assets/images/flyers/evento4.jpeg', 'assets/images/flyers/evento5.jpeg', 'assets/images/flyers/evento6.jpeg', 'assets/images/flyers/evento7.jpeg', 'assets/images/flyers/nuevo1.jpeg', 'assets/images/flyers/nuevo2.jpg'] },
+          { title: 'Flyers Urbanos', items: ['assets/images/flyers/flyerUrbano.jpeg', 'assets/images/flyers/flyerUrbano2.jpeg', 'assets/images/flyers/flyerUrbano3.jpeg', 'assets/images/flyers/flyerUrbano4.jpeg', 'assets/images/flyers/flyerUrbano5.jpg', 'assets/images/flyers/urbano1.jpeg'] },
+          { title: 'Flyers Night clubs', items: ['assets/images/flyers/nigth1.jpeg', 'assets/images/flyers/nigth2.jpeg', 'assets/images/flyers/night3.jpeg', 'assets/images/flyers/nigth4.jpeg', 'assets/images/flyers/night5.jpeg', 'assets/images/flyers/nightClub1.jpeg', 'assets/images/flyers/nightClub2.jpeg', 'assets/images/flyers/nightClub3.jpeg', 'assets/images/flyers/nightClub4.jpeg', 'assets/images/flyers/nightClub5.jpeg'] },
+          { title: 'Flyer de Cantina', items: ['assets/images/flyers/cantina1.jpeg', 'assets/images/flyers/cantina2.jpeg', 'assets/images/flyers/cantina3.jpeg', 'assets/images/flyers/cantina4.jpeg', 'assets/images/flyers/cantina5.jpeg', 'assets/images/flyers/cantina6.jpeg', 'assets/images/flyers/cantina7.jpeg'] }
         ],
         pricing: `
-          <!-- Individual -->
+          <!-- Flyer Normal -->
           <div class="col-lg-6 col-xl-4 mb-7 mb-xl-0 d-flex align-items-stretch">
             <div class="card w-100" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
               <div class="card-body p-7 p-xxl-5 d-flex flex-column gap-8">
                 <div class="d-flex flex-column gap-6">
-                  <div class="hstack gap-3">
-                    <h5 class="mb-0 fw-medium">Individual</h5>
-                  </div>
-                  <div class="hstack gap-2">
-                    <h3 class="mb-0">$60k</h3>
-                    <p class="mb-0">/flyer</p>
+                  <div class="hstack gap-3 flex-wrap">
+                    <h5 class="mb-0 fw-medium">Flyer Normal</h5>
                   </div>
                   <p class="mb-0">Perfecto para eventos únicos o promociones específicas.</p>
                 </div>
@@ -447,27 +449,65 @@
               </div>
             </div>
           </div>
-          <!-- Paquete de 4 -->
+          <!-- Flyer Especial -->
           <div class="col-lg-6 col-xl-4 mb-7 mb-xl-0 d-flex align-items-stretch">
             <div class="card w-100" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
               <div class="card-body p-7 p-xxl-5 d-flex flex-column gap-8">
                 <div class="d-flex flex-column gap-6">
-                  <div class="hstack gap-3">
-                    <h5 class="mb-0 fw-medium">Paquete de 4</h5>
-                    <span class="badge text-bg-dark hstack gap-2"><iconify-icon icon="lucide:flame" class="fs-5"></iconify-icon>Popular</span>
+                  <div class="hstack gap-3 flex-wrap">
+                    <h5 class="mb-0 fw-medium">Flyer Especial</h5>
                   </div>
-                  <div class="hstack gap-2">
-                    <h3 class="mb-0">$200k</h3>
-                    <p class="mb-0">/paquete</p>
-                  </div>
-                  <p class="mb-0">Gestión estratégica para series de eventos o lanzamientos.</p>
+                  <p class="mb-0">Para artistas y personas de alto impacto que necesitan destacar de verdad.</p>
                 </div>
                 <div class="pt-8 border-top d-flex flex-column gap-6">
                   <h6 class="mb-0 fw-normal">Qué incluye:</h6>
                   <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
                     <li class="hstack gap-3">
                       <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
-                      <h6 class="mb-0 fw-normal">4 diseños de flyers personalizados</h6>
+                      <h6 class="mb-0 fw-normal">Concepto y dirección de arte a medida</h6>
+                    </li>
+                    <li class="hstack gap-3">
+                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
+                      <h6 class="mb-0 fw-normal">Retoque y composición avanzada</h6>
+                    </li>
+                    <li class="hstack gap-3">
+                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
+                      <h6 class="mb-0 fw-normal">Hasta 3 revisiones</h6>
+                    </li>
+                    <li class="hstack gap-3">
+                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
+                      <h6 class="mb-0 fw-normal">Versiones para Feed y Stories</h6>
+                    </li>
+                    <li class="hstack gap-3">
+                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
+                      <h6 class="mb-0 fw-normal">Entrega prioritaria</h6>
+                    </li>
+                  </ul>
+                </div>
+                <a href="./contact.html" class="btn w-100 justify-content-center">
+                  <span class="btn-text">Elegir plan</span>
+                  <iconify-icon icon="lucide:arrow-up-right" class="btn-icon bg-white text-dark round-52 rounded-circle hstack justify-content-center fs-7 shadow-sm"></iconify-icon>
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- Promo x4 Flyers Normales -->
+          <div class="col-lg-6 col-xl-4 mb-7 mb-xl-0 d-flex align-items-stretch">
+            <div class="card w-100" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+              <div class="card-body p-7 p-xxl-5 d-flex flex-column gap-8">
+                <div class="d-flex flex-column gap-6">
+                  <div class="hstack gap-3 flex-wrap">
+                    <h5 class="mb-0 fw-medium">Promo x4 Flyers</h5>
+                    <span class="badge text-bg-dark hstack gap-2"><iconify-icon icon="lucide:flame" class="fs-5"></iconify-icon>Popular</span>
+                  </div>
+                  <p class="mb-0">4 flyers normales para tus series de eventos o lanzamientos.</p>
+                </div>
+                <div class="pt-8 border-top d-flex flex-column gap-6">
+                  <h6 class="mb-0 fw-normal">Qué incluye:</h6>
+                  <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
+                    <li class="hstack gap-3">
+                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
+                      <h6 class="mb-0 fw-normal">4 flyers normales personalizados</h6>
                     </li>
                     <li class="hstack gap-3">
                       <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
@@ -490,67 +530,16 @@
               </div>
             </div>
           </div>
-          <!-- Paquete Concierto -->
-          <div class="col-lg-6 col-xl-4 mb-7 mb-xl-0 d-flex align-items-stretch">
-            <div class="card w-100" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
-              <div class="card-body p-7 p-xxl-5 d-flex flex-column gap-8">
-                <div class="d-flex flex-column gap-6">
-                  <div class="hstack gap-3">
-                    <h5 class="mb-0 fw-medium">Paquete Concierto</h5>
-                  </div>
-                  <div class="hstack gap-2">
-                    <h3 class="mb-0">$480k</h3>
-                    <p class="mb-0">/evento</p>
-                  </div>
-                  <p class="mb-0">Impacto visual total para grandes producciones y eventos masivos.</p>
-                </div>
-                <div class="pt-8 border-top d-flex flex-column gap-6">
-                  <h6 class="mb-0 fw-normal">Qué incluye:</h6>
-                  <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
-                    <li class="hstack gap-3">
-                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
-                      <h6 class="mb-0 fw-normal">Flyer principal (Feed + Stories)</h6>
-                    </li>
-                    <li class="hstack gap-3">
-                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
-                      <h6 class="mb-0 fw-normal">Flyer animado tipo Reel/Story</h6>
-                    </li>
-                    <li class="hstack gap-3">
-                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
-                      <h6 class="mb-0 fw-normal">Video Reel dinámico con cuña profesional</h6>
-                    </li>
-                    <li class="hstack gap-3">
-                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
-                      <h6 class="mb-0 fw-normal">Diseño de mapa y ubicación del evento</h6>
-                    </li>
-                    <li class="hstack gap-3">
-                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
-                      <h6 class="mb-0 fw-normal">Flyer de lista de precios y boletería</h6>
-                    </li>
-                    <li class="hstack gap-3">
-                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
-                      <h6 class="mb-0 fw-normal">Flyer informativo de cuentas y métodos de pago</h6>
-                    </li>
-                    <li class="hstack gap-3">
-                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
-                      <h6 class="mb-0 fw-normal">Flyer de prohibiciones y normas de seguridad</h6>
-                    </li>
-                    <li class="hstack gap-3">
-                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
-                      <h6 class="mb-0 fw-normal">Diseños informativos (Temáticas/Sponsors)</h6>
-                    </li>
-                    <li class="hstack gap-3">
-                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
-                      <h6 class="mb-0 fw-normal">Soporte y gestión de cambios prioritaria</h6>
-                    </li>
-                  </ul>
-                </div>
-                <a href="./contact.html" class="btn w-100 justify-content-center">
-                  <span class="btn-text">Elegir plan</span>
-                  <iconify-icon icon="lucide:arrow-up-right" class="btn-icon bg-white text-dark round-52 rounded-circle hstack justify-content-center fs-7 shadow-sm"></iconify-icon>
-                </a>
-              </div>
-            </div>
+          <!-- Pregunta por el paquete concierto -->
+          <div class="col-12 mt-7">
+            <a href="./contact.html" class="md-concert-cta" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+              <span class="md-concert-ico"><iconify-icon icon="lucide:party-popper"></iconify-icon></span>
+              <span class="md-concert-txt">
+                <strong>¿Organizas un concierto o evento masivo?</strong>
+                <span>Pregunta por el <b>Paquete Concierto</b>: cobertura visual completa del evento.</span>
+              </span>
+              <span class="md-concert-arrow"><iconify-icon icon="lucide:arrow-up-right"></iconify-icon></span>
+            </a>
           </div>
         `
       },
@@ -560,22 +549,19 @@
         description: 'Diseño de flyers profesionales para cualquier necesidad comercial o personal. Calidad premium asegurada para impresión o plataformas digitales.',
         banner: 'assets/images/flyers/bannerFlyer2.jpg',
         gallery: [
-          { title: 'Flyer Party', items: ['assets/images/flyers/flyerParty.png', 'assets/images/flyers/flyerParty2.jpeg', 'assets/images/flyers/flyerParty3.jpeg', 'assets/images/flyers/flyerParty4.jpeg'] },
+          { title: 'Flyers Premium', items: ['assets/images/flyers/flyerPremium1.jpg', 'assets/images/flyers/flyerPremium2.jpg', 'assets/images/flyers/flyerPremium3.jpg', 'assets/images/flyers/flyerPremium4.jpg', 'assets/images/flyers/flyerPremium5.jpg', 'assets/images/flyers/flyerPremium6.jpg'] },
+          { title: 'Flyer Party', items: ['assets/images/flyers/flyerParty.png', 'assets/images/flyers/flyerParty2.jpeg', 'assets/images/flyers/flyerParty3.jpeg', 'assets/images/flyers/flyerParty4.jpeg', 'assets/images/flyers/party.jpeg', 'assets/images/flyers/party2.jpeg'] },
           { title: 'Flyer Deportivo', items: ['assets/images/flyers/flyerDeportivo.jpeg', 'assets/images/flyers/flyerDeportivo2.jpeg', 'assets/images/flyers/flyerDeportivo3.jpeg', 'assets/images/flyers/flyerDeportivo4.jpeg'] },
           { title: 'Flyer corporativos', items: ['assets/images/flyers/flyerpersonalizado1.jpeg', 'assets/images/flyers/flyerpersonalizado2.jpeg', 'assets/images/flyers/empresa.jpg', 'assets/images/flyers/empresa2.jpg'] }
         ],
         pricing: `
-          <!-- Individual -->
+          <!-- Flyer Normal -->
           <div class="col-lg-6 col-xl-4 mb-7 mb-xl-0 d-flex align-items-stretch">
             <div class="card w-100" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
               <div class="card-body p-7 p-xxl-5 d-flex flex-column gap-8">
                 <div class="d-flex flex-column gap-6">
-                  <div class="hstack gap-3">
-                    <h5 class="mb-0 fw-medium">Individual</h5>
-                  </div>
-                  <div class="hstack gap-2">
-                    <h3 class="mb-0">$60k</h3>
-                    <p class="mb-0">/flyer</p>
+                  <div class="hstack gap-3 flex-wrap">
+                    <h5 class="mb-0 fw-medium">Flyer Normal</h5>
                   </div>
                   <p class="mb-0">Perfecto para eventos únicos o promociones específicas.</p>
                 </div>
@@ -607,27 +593,65 @@
               </div>
             </div>
           </div>
-          <!-- Paquete de 4 -->
+          <!-- Flyer Especial -->
           <div class="col-lg-6 col-xl-4 mb-7 mb-xl-0 d-flex align-items-stretch">
             <div class="card w-100" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
               <div class="card-body p-7 p-xxl-5 d-flex flex-column gap-8">
                 <div class="d-flex flex-column gap-6">
-                  <div class="hstack gap-3">
-                    <h5 class="mb-0 fw-medium">Paquete de 4</h5>
-                    <span class="badge text-bg-dark hstack gap-2"><iconify-icon icon="lucide:flame" class="fs-5"></iconify-icon>Popular</span>
+                  <div class="hstack gap-3 flex-wrap">
+                    <h5 class="mb-0 fw-medium">Flyer Especial</h5>
                   </div>
-                  <div class="hstack gap-2">
-                    <h3 class="mb-0">$200k</h3>
-                    <p class="mb-0">/paquete</p>
-                  </div>
-                  <p class="mb-0">Gestión estratégica para series de eventos o lanzamientos.</p>
+                  <p class="mb-0">Para artistas y personas de alto impacto que necesitan destacar de verdad.</p>
                 </div>
                 <div class="pt-8 border-top d-flex flex-column gap-6">
                   <h6 class="mb-0 fw-normal">Qué incluye:</h6>
                   <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
                     <li class="hstack gap-3">
                       <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
-                      <h6 class="mb-0 fw-normal">4 diseños de flyers personalizados</h6>
+                      <h6 class="mb-0 fw-normal">Concepto y dirección de arte a medida</h6>
+                    </li>
+                    <li class="hstack gap-3">
+                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
+                      <h6 class="mb-0 fw-normal">Retoque y composición avanzada</h6>
+                    </li>
+                    <li class="hstack gap-3">
+                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
+                      <h6 class="mb-0 fw-normal">Hasta 3 revisiones</h6>
+                    </li>
+                    <li class="hstack gap-3">
+                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
+                      <h6 class="mb-0 fw-normal">Versiones para Feed y Stories</h6>
+                    </li>
+                    <li class="hstack gap-3">
+                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
+                      <h6 class="mb-0 fw-normal">Entrega prioritaria</h6>
+                    </li>
+                  </ul>
+                </div>
+                <a href="./contact.html" class="btn w-100 justify-content-center">
+                  <span class="btn-text">Elegir plan</span>
+                  <iconify-icon icon="lucide:arrow-up-right" class="btn-icon bg-white text-dark round-52 rounded-circle hstack justify-content-center fs-7 shadow-sm"></iconify-icon>
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- Promo x4 Flyers Normales -->
+          <div class="col-lg-6 col-xl-4 mb-7 mb-xl-0 d-flex align-items-stretch">
+            <div class="card w-100" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+              <div class="card-body p-7 p-xxl-5 d-flex flex-column gap-8">
+                <div class="d-flex flex-column gap-6">
+                  <div class="hstack gap-3 flex-wrap">
+                    <h5 class="mb-0 fw-medium">Promo x4 Flyers</h5>
+                    <span class="badge text-bg-dark hstack gap-2"><iconify-icon icon="lucide:flame" class="fs-5"></iconify-icon>Popular</span>
+                  </div>
+                  <p class="mb-0">4 flyers normales para tus series de eventos o lanzamientos.</p>
+                </div>
+                <div class="pt-8 border-top d-flex flex-column gap-6">
+                  <h6 class="mb-0 fw-normal">Qué incluye:</h6>
+                  <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
+                    <li class="hstack gap-3">
+                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
+                      <h6 class="mb-0 fw-normal">4 flyers normales personalizados</h6>
                     </li>
                     <li class="hstack gap-3">
                       <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
@@ -650,67 +674,16 @@
               </div>
             </div>
           </div>
-          <!-- Paquete Concierto -->
-          <div class="col-lg-6 col-xl-4 mb-7 mb-xl-0 d-flex align-items-stretch">
-            <div class="card w-100" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
-              <div class="card-body p-7 p-xxl-5 d-flex flex-column gap-8">
-                <div class="d-flex flex-column gap-6">
-                  <div class="hstack gap-3">
-                    <h5 class="mb-0 fw-medium">Paquete Concierto</h5>
-                  </div>
-                  <div class="hstack gap-2">
-                    <h3 class="mb-0">$480k</h3>
-                    <p class="mb-0">/evento</p>
-                  </div>
-                  <p class="mb-0">Impacto visual total para grandes producciones y eventos masivos.</p>
-                </div>
-                <div class="pt-8 border-top d-flex flex-column gap-6">
-                  <h6 class="mb-0 fw-normal">Qué incluye:</h6>
-                  <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
-                    <li class="hstack gap-3">
-                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
-                      <h6 class="mb-0 fw-normal">Flyer principal (Feed + Stories)</h6>
-                    </li>
-                    <li class="hstack gap-3">
-                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
-                      <h6 class="mb-0 fw-normal">Flyer animado tipo Reel/Story</h6>
-                    </li>
-                    <li class="hstack gap-3">
-                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
-                      <h6 class="mb-0 fw-normal">Video Reel dinámico con cuña profesional</h6>
-                    </li>
-                    <li class="hstack gap-3">
-                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
-                      <h6 class="mb-0 fw-normal">Diseño de mapa y ubicación del evento</h6>
-                    </li>
-                    <li class="hstack gap-3">
-                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
-                      <h6 class="mb-0 fw-normal">Flyer de lista de precios y boletería</h6>
-                    </li>
-                    <li class="hstack gap-3">
-                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
-                      <h6 class="mb-0 fw-normal">Flyer informativo de cuentas y métodos de pago</h6>
-                    </li>
-                    <li class="hstack gap-3">
-                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
-                      <h6 class="mb-0 fw-normal">Flyer de prohibiciones y normas de seguridad</h6>
-                    </li>
-                    <li class="hstack gap-3">
-                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
-                      <h6 class="mb-0 fw-normal">Diseños informativos (Temáticas/Sponsors)</h6>
-                    </li>
-                    <li class="hstack gap-3">
-                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
-                      <h6 class="mb-0 fw-normal">Soporte y gestión de cambios prioritaria</h6>
-                    </li>
-                  </ul>
-                </div>
-                <a href="./contact.html" class="btn w-100 justify-content-center">
-                  <span class="btn-text">Elegir plan</span>
-                  <iconify-icon icon="lucide:arrow-up-right" class="btn-icon bg-white text-dark round-52 rounded-circle hstack justify-content-center fs-7 shadow-sm"></iconify-icon>
-                </a>
-              </div>
-            </div>
+          <!-- Pregunta por el paquete concierto -->
+          <div class="col-12 mt-7">
+            <a href="./contact.html" class="md-concert-cta" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+              <span class="md-concert-ico"><iconify-icon icon="lucide:party-popper"></iconify-icon></span>
+              <span class="md-concert-txt">
+                <strong>¿Organizas un concierto o evento masivo?</strong>
+                <span>Pregunta por el <b>Paquete Concierto</b>: cobertura visual completa del evento.</span>
+              </span>
+              <span class="md-concert-arrow"><iconify-icon icon="lucide:arrow-up-right"></iconify-icon></span>
+            </a>
           </div>
         `
       },
@@ -732,10 +705,6 @@
                 <div class="d-flex flex-column gap-6">
                   <div class="hstack gap-3">
                     <h5 class="mb-0 fw-medium">Básico</h5>
-                  </div>
-                  <div class="hstack gap-2">
-                    <h3 class="mb-0">$100k</h3>
-                    <p class="mb-0">/proyecto</p>
                   </div>
                   <p class="mb-0">Animación básica efectiva para destacar.</p>
                 </div>
@@ -776,10 +745,6 @@
                     <h5 class="mb-0 fw-medium">Profesional</h5>
                     <span class="badge text-bg-dark hstack gap-2"><iconify-icon icon="lucide:flame" class="fs-5"></iconify-icon>Popular</span>
                   </div>
-                  <div class="hstack gap-2">
-                    <h3 class="mb-0">$150k</h3>
-                    <p class="mb-0">/proyecto</p>
-                  </div>
                   <p class="mb-0">Producción audiovisual de alto nivel con efectos cinemáticos.</p>
                 </div>
                 <div class="pt-8 border-top d-flex flex-column gap-6">
@@ -805,6 +770,10 @@
                       <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
                       <h6 class="mb-0 fw-normal">Formato MP4 de alta calidad</h6>
                     </li>
+                    <li class="hstack gap-3">
+                      <span class="round-32 rounded-circle bg-primary flex-shrink-0 hstack justify-content-center"><iconify-icon icon="lucide:check" class="fs-6 text-dark"></iconify-icon></span>
+                      <h6 class="mb-0 fw-normal">Incluye también el flyer normal en JPG</h6>
+                    </li>
                   </ul>
                 </div>
                 <a href="./contact.html" class="btn w-100 justify-content-center">
@@ -821,10 +790,6 @@
                 <div class="d-flex flex-column gap-6">
                   <div class="hstack gap-3">
                     <h5 class="mb-0 fw-medium">Premium</h5>
-                  </div>
-                  <div class="hstack gap-2">
-                    <h3 class="mb-0">$200k</h3>
-                    <p class="mb-0">/proyecto</p>
                   </div>
                   <p class="mb-0">Experiencia audiovisual inmersiva con locución profesional.</p>
                 </div>
@@ -881,10 +846,6 @@
                   <div class="hstack gap-3">
                     <h5 class="mb-0 fw-medium">Iniciante</h5>
                   </div>
-                  <div class="hstack gap-2">
-                    <h3 class="mb-0">$60k</h3>
-                    <p class="mb-0">/paquete</p>
-                  </div>
                   <p class="mb-0">Presencia profesional básica para tu marca personal o negocio.</p>
                 </div>
                 <div class="pt-8 border-top d-flex flex-column gap-6">
@@ -922,10 +883,6 @@
                 <div class="d-flex flex-column gap-6">
                   <div class="hstack gap-3">
                     <h5 class="mb-0 fw-medium">Intermedio</h5>
-                  </div>
-                  <div class="hstack gap-2">
-                    <h3 class="mb-0">$200k</h3>
-                    <p class="mb-0">/paquete</p>
                   </div>
                   <p class="mb-0">Aumenta tu impacto visual con contenido variado y profesional.</p>
                 </div>
@@ -969,10 +926,6 @@
                   <div class="hstack gap-3">
                     <h5 class="mb-0 fw-medium">Recurrente Mensual</h5>
                     <span class="badge text-bg-dark hstack gap-2"><iconify-icon icon="lucide:briefcase" class="fs-5"></iconify-icon>Socio Estratégico</span>
-                  </div>
-                  <div class="hstack gap-2">
-                    <h3 class="mb-0">$350k</h3>
-                    <p class="mb-0">/mes</p>
                   </div>
                   <p class="mb-0">Tu equipo de diseño dedicado para un crecimiento constante.</p>
                 </div>
@@ -1025,10 +978,6 @@
                   <div class="hstack gap-3">
                     <h5 class="mb-0 fw-medium">Bronce</h5>
                   </div>
-                  <div class="hstack gap-2">
-                    <h3 class="mb-0">$450k</h3>
-                    <p class="mb-0">/proyecto</p>
-                  </div>
                   <p class="mb-0">Logo, manual base, 1 producto y banner social.</p>
                 </div>
                 <div class="pt-8 border-top d-flex flex-column gap-6">
@@ -1068,10 +1017,6 @@
                     <h5 class="mb-0 fw-medium">Plata</h5>
                     <span class="badge text-bg-dark hstack gap-2"><iconify-icon icon="lucide:flame" class="fs-5"></iconify-icon>Popular</span>
                   </div>
-                  <div class="hstack gap-2">
-                    <h3 class="mb-0">$850k</h3>
-                    <p class="mb-0">/proyecto</p>
-                  </div>
                   <p class="mb-0">Identidad completa para marcas en crecimiento.</p>
                 </div>
                 <div class="pt-8 border-top d-flex flex-column gap-6">
@@ -1110,10 +1055,6 @@
                   <div class="hstack gap-3">
                     <h5 class="mb-0 fw-medium">Oro</h5>
                   </div>
-                  <div class="hstack gap-2">
-                    <h3 class="mb-0">$1.5M</h3>
-                    <p class="mb-0">/proyecto</p>
-                  </div>
                   <p class="mb-0">Solución integral de branding para empresas.</p>
                 </div>
                 <div class="pt-8 border-top d-flex flex-column gap-6">
@@ -1148,9 +1089,42 @@
       }
     };
 
+    // --- MD: reorganización de categorías (sin reescribir el objeto base) ---
+    (function reorganizeProjects() {
+      var pd = projectsData;
+      // Animaciones (renombre + ampliación de "flyers-animados")
+      if (pd['flyers-animados']) {
+        var anim = Object.assign({}, pd['flyers-animados']);
+        anim.title = 'Animaciones';
+        anim.subtitle = 'Motion design, flyers animados y visuales que cobran vida.';
+        anim.gallery = [
+          { title: 'Flyers Animados', items: ['assets/images/flyers/motionProfesional1.mp4', 'assets/images/flyers/motionProfesional2.mp4', 'assets/images/flyers/motionProfesional3.mp4', 'assets/images/flyers/motionProfesional4.mp4', 'assets/images/flyers/motionflyer.mp4', 'assets/images/flyers/motion2.mp4'] },
+          { title: 'Spots con Locución', items: ['assets/images/flyers/motionPremium1.mp4', 'assets/images/flyers/motionPremium2.mp4', 'assets/images/flyers/motiomPremium3.mp4', 'assets/images/flyers/motionPremiun4.mp4', 'assets/images/flyers/motionPremiun5.mp4'] },
+          { title: 'Motion Esencial', items: ['assets/images/flyers/motionBasic1.mp4', 'assets/images/flyers/motionBasic2.mp4', 'assets/images/flyers/motionBasic3.mp4', 'assets/images/flyers/motionBasic4.mp4', 'assets/images/flyers/motionBasic.mp4'] },
+          { title: 'Branding en Movimiento', landscape: true, items: ['assets/images/flyers/Final.mp4', 'assets/images/flyers/Visumed.mp4', 'assets/images/flyers/vip.mp4'] },
+          { title: 'Animación de Logo', landscape: true, items: ['assets/images/flyers/logo-converted.mp4', 'assets/images/flyers/Logp2.mp4', 'assets/images/flyers/Logo3.mp4'] },
+          { title: 'Visuales para Eventos (VJ)', landscape: true, items: ['assets/images/flyers/Visual1.mp4', 'assets/images/flyers/Visual2.mp4'] }
+        ];
+        pd['animaciones'] = anim;
+      }
+      // Flyers = eventos + flyers + grupo "Flyers Animados"
+      if (pd['flyers'] && pd['flyer-eventos']) {
+        pd['flyers'].gallery = [].concat(
+          pd['flyer-eventos'].gallery,
+          pd['flyers'].gallery,
+          [{ title: 'Flyers Animados', items: ['assets/images/flyers/motionBasic1.mp4', 'assets/images/flyers/motionProfesional1.mp4', 'assets/images/flyers/motionProfesional2.mp4', 'assets/images/flyers/motionPremium1.mp4'] }]
+        );
+        pd['flyers'].subtitle = 'Flyers para eventos, conciertos, urbanos, corporativos y más.';
+      }
+    })();
+
+    var PROJECT_ALIASES = { 'flyer-eventos': 'flyers', 'flyers-animados': 'animaciones' };
+    function mdSlug(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, '-'); }
+
     function loadProject() {
       const urlParams = new URLSearchParams(window.location.search);
-      const projectId = urlParams.get('project') || 'flyers';
+      let projectId = urlParams.get('project') || 'flyers';
+      if (PROJECT_ALIASES[projectId]) projectId = PROJECT_ALIASES[projectId];
       const data = projectsData[projectId];
 
       if (!data) {
@@ -1176,15 +1150,39 @@
         rowDiv.setAttribute('data-aos', 'fade-up');
         rowDiv.setAttribute('data-aos-delay', rowIndex * 100);
 
+        const head = document.createElement('div');
+        head.className = 'gallery-row-head d-flex align-items-center justify-content-between gap-3';
         const title = document.createElement('h3');
-        title.classList.add('gallery-row-title');
+        title.classList.add('gallery-row-title', 'mb-0');
         title.innerText = row.title;
+        head.appendChild(title);
+        if (!row.soon && row.items && row.items.length) {
+          const vt = document.createElement('a');
+          vt.className = 'md-vertodos-link';
+          vt.href = `gallery.html?cat=${projectId}&group=${mdSlug(row.title)}`;
+          vt.textContent = 'Ver todos';
+          head.appendChild(vt);
+        }
+
+        // Grupos "Próximamente" (categorías sin material aún)
+        if (row.soon || !row.items || !row.items.length) {
+          rowDiv.appendChild(head);
+          const soon = document.createElement('div');
+          soon.className = 'md-soon';
+          soon.style.cssText = 'background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)';
+          soon.innerText = 'Próximamente';
+          rowDiv.appendChild(soon);
+          galleryContainer.appendChild(rowDiv);
+          return;
+        }
 
         const carouselDiv = document.createElement('div');
         carouselDiv.classList.add('owl-carousel', 'owl-theme');
 
-        // Aspect ratio handling based on project type
-        if (projectId === 'social-media') {
+        // Aspect ratio handling based on project type / grupo
+        if (row.landscape) {
+          carouselDiv.classList.add('landscape-row');
+        } else if (projectId === 'social-media') {
           carouselDiv.classList.add('square-img');
         } else if (projectId === 'diseno-marca') {
           carouselDiv.classList.add('four-three-img');
@@ -1216,7 +1214,7 @@
           carouselDiv.appendChild(itemWrapper);
         });
 
-        rowDiv.appendChild(title);
+        rowDiv.appendChild(head);
         rowDiv.appendChild(carouselDiv);
         galleryContainer.appendChild(rowDiv);
 
@@ -1236,25 +1234,21 @@
           mouseDrag: true,
           touchDrag: true,
           pullDrag: true,
-          responsive: {
-            0: {
-              items: 2,
-              margin: 10
-            },
-            768: {
-              items: 3,
-              margin: 15
-            },
-            1200: {
-              items: 4,
-              margin: 20
-            }
+          responsive: row.landscape ? {
+            0: { items: 1, margin: 10 },
+            768: { items: 2, margin: 16 },
+            1200: { items: 2, margin: 20 }
+          } : {
+            0: { items: 2, margin: 10 },
+            768: { items: 3, margin: 15 },
+            1200: { items: 4, margin: 20 }
           }
         });
       });
 
       // Update Pricing
       document.getElementById('pricing-container').innerHTML = data.pricing;
+      if (window.mdPricingAnim) window.mdPricingAnim();
 
       // Re-init AOS
       AOS.init({

@@ -10,7 +10,10 @@ $(function () {
     });
 
 
-    // Featured Owl Carousel
+    // Featured Owl Carousel — en mobile NO se inicializa (se muestra como grid, todo visible)
+    if (window.innerWidth < 992) {
+        $('.featured-projects-slider').addClass('md-no-carousel');
+    } else
     $('.featured-projects-slider .owl-carousel').owlCarousel({
         center: true,
         loop: true,
@@ -82,6 +85,15 @@ $(function () {
     };
 
 
+    // Precios en mobile: animar desde los lados (no desde abajo)
+    window.mdPricingAnim = function () {
+        if (window.innerWidth > 575) return;
+        document.querySelectorAll('.pricing-section .card[data-aos]').forEach(function (c, i) {
+            c.setAttribute('data-aos', (i % 2) ? 'fade-left' : 'fade-right');
+        });
+    };
+    window.mdPricingAnim();
+
     // Aos
     AOS.init({
         once: true,
@@ -134,7 +146,7 @@ $(function () {
     window.pricingExamples = {
         'flyer-individual': {
             title: 'Flyer Individual',
-            desc: '<span class="fs-4 fw-bold text-primary d-block mb-3">$60k / unit</span>Impacto visual inmediato en una sola pieza. Incluye diseño personalizado con hasta 2 revisiones, optimización para redes sociales (Feed y Stories) y entrega de archivos en alta resolución (JPG/PNG). Ideal para lanzamientos rápidos o anuncios puntuales que requieren profesionalismo absoluto.',
+            desc: 'Impacto visual inmediato en una sola pieza. Incluye diseño personalizado con hasta 2 revisiones, optimización para redes sociales (Feed y Stories) y entrega de archivos en alta resolución (JPG/PNG). Ideal para lanzamientos rápidos o anuncios puntuales que requieren profesionalismo absoluto.',
             items: [
                 { type: 'image', src: '../assets/images/portfolio/im1.jpeg', label: 'Propuesta Personalizada' }
             ]
@@ -155,7 +167,7 @@ $(function () {
             items: [
                 { type: 'image', src: '../assets/images/portfolio/im1.jpeg', label: 'Flyer Principal', size: 'size-tall' },
                 { type: 'image', src: '../assets/images/portfolio/fly.png', label: 'Mapa de ubicación' },
-                { type: 'image', src: '../assets/images/portfolio/im3.png', label: 'Lista de Precios' },
+                { type: 'image', src: '../assets/images/portfolio/im3.png', label: 'Lista de servicios' },
                 { type: 'image', src: '../assets/images/portfolio/im2.jpeg', label: 'Métodos de pago' }
             ]
         },
@@ -343,46 +355,83 @@ $(function () {
             });
     });
 
-    // Handle Preloader Hiding
+    // Handle Preloader Hiding (oculta del todo, no bloquea la página)
     function hidePreloader() {
-        const preloader = $('#preloader');
-        if (preloader.length && !preloader.hasClass('fade-out')) {
-            preloader.addClass('fade-out');
-            // Refresh AOS animations after the preloader is gone
-            if (typeof AOS !== 'undefined') {
-                setTimeout(() => AOS.refresh(), 100);
-            }
-        }
+        const preloader = document.getElementById('preloader');
+        if (!preloader || preloader.classList.contains('fade-out')) return;
+        preloader.classList.add('fade-out');
+        preloader.style.pointerEvents = 'none';
+        setTimeout(function () { preloader.style.display = 'none'; }, 600);
+        if (typeof AOS !== 'undefined') setTimeout(function () { AOS.refresh(); }, 100);
     }
 
-    // Wait for hero video or window load
+    // Reproducir el video del hero (best-effort, mobile)
     const heroVideo = $('.banner-section video')[0];
     if (heroVideo) {
-        // Force play for mobile devices (iOS/Android)
-        const startVideo = () => {
-            heroVideo.play().catch(error => {
-                console.log("Autoplay prevented:", error);
-                // On some mobiles, we might need a tap, but muted should work
-            });
-        };
+        const startVideo = function () { heroVideo.play().catch(function () {}); };
+        if (heroVideo.readyState >= 2) startVideo();
+        else heroVideo.addEventListener('canplay', startVideo, { once: true });
+    }
 
-        // If already ready or cached
-        if (heroVideo.readyState >= 3) {
-            startVideo();
-            setTimeout(hidePreloader, 800);
-        } else {
-            heroVideo.oncanplaythrough = function () {
-                startVideo();
-                setTimeout(hidePreloader, 500);
-            };
-            // Fallback: 5 seconds max wait
-            setTimeout(hidePreloader, 5000);
-        }
+    // Preloader: SOLO en la primera carga de la sesión.
+    // Al navegar entre páginas se oculta al instante (no reaparece).
+    if (sessionStorage.getItem('md-loaded')) {
+        hidePreloader();
     } else {
-        // If not on index.html or no video
-        $(window).on('load', function () {
-            setTimeout(hidePreloader, 500);
-        });
+        sessionStorage.setItem('md-loaded', '1');
+        $(window).on('load', function () { setTimeout(hidePreloader, 400); });
+        // Cierre garantizado pase lo que pase con los recursos
+        setTimeout(hidePreloader, 2500);
     }
 
 });
+
+/* ===================================================================
+   === MD REDESIGN — filtro SVG glass + toggle monedas + acordeón ===
+   =================================================================== */
+
+// 0) Inyectar tipografía display (Space Grotesk) una sola vez
+(function injectFont() {
+    if (document.getElementById('md-font')) return;
+    var pre1 = document.createElement('link'); pre1.rel = 'preconnect'; pre1.href = 'https://fonts.googleapis.com';
+    var pre2 = document.createElement('link'); pre2.rel = 'preconnect'; pre2.href = 'https://fonts.gstatic.com'; pre2.crossOrigin = 'anonymous';
+    var l = document.createElement('link'); l.id = 'md-font'; l.rel = 'stylesheet';
+    l.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap';
+    document.head.appendChild(pre1); document.head.appendChild(pre2); document.head.appendChild(l);
+})();
+
+// 1) Inyectar el filtro SVG de refracción una sola vez
+(function injectGlassFilter() {
+    function inject() {
+        if (document.getElementById('md-glass-svg')) return;
+        var ns = 'http://www.w3.org/2000/svg';
+        var svg = document.createElementNS(ns, 'svg');
+        svg.id = 'md-glass-svg';
+        svg.setAttribute('aria-hidden', 'true');
+        svg.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
+        svg.innerHTML =
+            '<filter id="md-glass-distortion" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">' +
+            '<feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="17" result="t"/>' +
+            '<feGaussianBlur in="t" stdDeviation="2.2" result="m"/>' +
+            '<feDisplacementMap in="SourceGraphic" in2="m" scale="48" xChannelSelector="R" yChannelSelector="G"/>' +
+            '</filter>';
+        document.body.appendChild(svg);
+    }
+    if (document.body) inject();
+    else document.addEventListener('DOMContentLoaded', inject);
+})();
+
+// 3) Acordeón de servicios (mobile)
+(function servicesAccordion() {
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.md-acc-item .md-acc-head').forEach(function (h) {
+            h.addEventListener('click', function () {
+                var item = h.closest('.md-acc-item');
+                var acc = item.closest('.md-acc');
+                var isOpen = item.classList.contains('open');
+                if (acc) acc.querySelectorAll('.md-acc-item.open').forEach(function (i) { i.classList.remove('open'); });
+                if (!isOpen) item.classList.add('open');
+            });
+        });
+    });
+})();

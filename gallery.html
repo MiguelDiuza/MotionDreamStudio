@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galería · Motion Dreams</title>
+  <link rel="shortcut icon" type="image/png" href="assets/images/logos/favicon.svg" />
+  <link rel="stylesheet" href="assets/libs/aos-master/dist/aos.css">
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="loader-content">
+      <img src="assets/images/logos/logo-white.svg" alt="Motion Dreams" class="loader-logo">
+      <div class="loader-bar">
+        <div class="loader-progress"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header border-4 border-primary border-top position-fixed start-0 top-0 w-100" style="z-index: 1050;">
+    <div class="container">
+      <div class="header-wrapper d-flex align-items-center justify-content-between">
+        <div class="logo">
+          <a href="./index.html" class="logo-white">
+            <img src="assets/images/logos/logo-white.svg" alt="logo" class="img-fluid">
+          </a>
+          <a href="./index.html" class="logo-dark">
+            <img src="assets/images/logos/logo-dark.svg" alt="logo" class="img-fluid">
+          </a>
+        </div>
+        <div class="d-flex align-items-center gap-4">
+          <div class="btn-group">
+            <button
+              class="btn btn-secondary toggle-menu round-45 p-2 d-flex align-items-center justify-content-center bg-white rounded-circle"
+              type="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+              <iconify-icon icon="solar:hamburger-menu-line-duotone" class="menu-icon fs-8 text-dark"></iconify-icon>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end p-4">
+              <div class="d-flex flex-column gap-6">
+                <div class="hstack justify-content-between border-bottom pb-6">
+                  <p class="mb-0 fs-5 text-dark">Menu</p>
+                  <button type="button" class="btn-close opacity-75" aria-label="Close"></button>
+                </div>
+                <div class="d-flex flex-column gap-3">
+                  <ul class="header-menu list-unstyled mb-0 d-flex flex-column gap-2">
+                    <li class="header-item">
+                      <a href="./index.html" class="header-link hstack gap-2 fs-7 fw-bold text-dark"><img
+                          src="assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
+                          class="img-fluid  animate-spin">Inicio</a>
+                    </li>
+                    <li class="header-item">
+                      <a href="./about-us.html" class="header-link hstack gap-2 fs-7 fw-bold text-dark"><img
+                          src="assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
+                          class="img-fluid  animate-spin">Nosotros</a>
+                    </li>
+                    <li class="header-item">
+                      <a href="./projects.html" aria-current="true"
+                        class="header-link active hstack gap-2 fs-7 fw-bold text-dark"><img
+                          src="assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
+                          class="img-fluid  animate-spin">Proyectos</a>
+                    </li>
+                    <li class="header-item">
+                      <a href="index.html#pricing" class="header-link hstack gap-2 fs-7 fw-bold text-dark"><img
+                          src="assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
+                          class="img-fluid  animate-spin">Planes</a>
+                    </li>
+                    <li class="header-item">
+                      <a href="./contact.html" class="header-link hstack gap-2 fs-7 fw-bold text-dark"><img
+                          src="assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
+                          class="img-fluid  animate-spin">Contacto</a>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <a class="fs-8 text-dark fw-bold" href="mailto:creatik.motion@gmail.com">creatik.motion@gmail.com</a>
+                </div>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Wrapper -->
+  <div class="page-wrapper overflow-hidden">
+
+    <!-- Banner -->
+    <section class="banner-section banner-inner-section position-relative overflow-hidden d-flex align-items-end"
+      style="background-image: url(assets/images/flyers/bannerProyectos.jpg);">
+      <div class="container">
+        <div class="d-flex flex-column gap-4 pb-5 pb-xl-10 position-relative z-1">
+          <div class="row align-items-center">
+            <div class="col-xl-6">
+              <div class="d-flex align-items-center gap-4" data-aos="fade-up" data-aos-duration="1000">
+                <img src="assets/images/svgs/primary-leaf.svg" alt="" width="30" height="30"
+                  class="img-fluid animate-spin">
+                <p class="mb-0 text-white fs-5 text-opacity-70" id="galSubtitle">Galería completa</p>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex align-items-end gap-3" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+            <h1 class="mb-0 md-fluid-h1 text-white lh-1" id="galTitle">Galería</h1>
+            <a href="./projects.html" class="p-1 ps-7 bg-primary rounded-pill">
+              <span class="bg-white round-52 rounded-circle d-flex align-items-center justify-content-center">
+                <iconify-icon icon="lucide:arrow-left" class="fs-8 text-dark"></iconify-icon>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="py-5 py-lg-11">
+      <div class="container">
+        <div class="md-gallery-filters mb-6" id="galFilters" data-aos="fade-up"></div>
+        <div class="mt-5">
+          <div id="galGrid"></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="footer bg-dark py-5 py-lg-11 py-xl-12">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-5 mb-8 mb-xl-0">
+          <div class="d-flex flex-column gap-8 pe-xl-5">
+            <h2 class="mb-0 text-white">¿Construimos algo juntos?</h2>
+            <div class="d-flex flex-column gap-2">
+              <a href="mailto:creatik.motion@gmail.com" class="link-hover hstack gap-3 text-white fs-5">
+                <iconify-icon icon="lucide:mail" class="fs-7 text-primary"></iconify-icon>
+                creatik.motion@gmail.com
+              </a>
+              <a href="https://wa.me/573218431014" target="_blank" class="link-hover hstack gap-3 text-white fs-5">
+                <iconify-icon icon="lucide:phone" class="fs-7 text-primary"></iconify-icon>
+                +57 321 8431014
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-xl-2 mb-8 mb-xl-0">
+          <ul class="footer-menu list-unstyled mb-0 d-flex flex-column gap-2">
+            <li><a class="link-hover fs-5 text-white" href="./index.html">Inicio</a></li>
+            <li><a class="link-hover fs-5 text-white" href="./about-us.html">Nosotros</a></li>
+            <li><a class="link-hover fs-5 text-white" href="index.html#services">Servicios</a></li>
+            <li><a class="link-hover fs-5 text-white" href="./projects.html">Proyectos</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 col-xl-2 mb-8 mb-xl-0">
+          <ul class="footer-menu list-unstyled mb-0 d-flex flex-column gap-2">
+            <li><a class="link-hover fs-5 text-white" href="https://www.instagram.com/motion_dreams.co/">Instagram</a></li>
+            <li><a class="link-hover fs-5 text-white" href="https://www.behance.net/gallery/168997485/Diseno-de-Flyers">Behance</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 col-xl-3 mb-8 mb-xl-0">
+          <p class="mb-0 text-white text-opacity-70 text-md-end">© Motion Dreams copyright 2025</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="get-template hstack gap-2">
+    <button class="btn bg-primary p-2 round-52 rounded-circle hstack justify-content-center flex-shrink-0"
+      id="scrollToTopBtn">
+      <iconify-icon icon="lucide:arrow-up" class="fs-7 text-dark"></iconify-icon>
+    </button>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="custom-modal" class="custom-modal-overlay">
+    <span class="modal-close"><iconify-icon icon="lucide:x"></iconify-icon></span>
+    <div class="modal-content-wrapper masonry-grid-container"></div>
+  </div>
+
+  <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/libs/aos-master/dist/aos.js"></script>
+  <script src="assets/js/custom.js"></script>
+  <script src="assets/js/gallery-data.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+
+  <script>
+    (function () {
+      function slug(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, '-'); }
+      var params = new URLSearchParams(location.search);
+      var cat = params.get('cat') || 'flyers';
+      var data = window.MD_GALLERY[cat] || window.MD_GALLERY['flyers'];
+
+      document.getElementById('galTitle').innerText = data.title;
+      document.getElementById('galSubtitle').innerText = data.subtitle;
+      document.title = data.title + ' · Galería · Motion Dreams';
+
+      var filters = document.getElementById('galFilters');
+      var grid = document.getElementById('galGrid');
+      var chipsHtml = '<button class="md-chip on" data-filter="all">Todos</button>';
+      var gridHtml = '';
+
+      data.groups.forEach(function (g) {
+        var gid = slug(g.title);
+        chipsHtml += '<button class="md-chip" data-filter="' + gid + '">' + g.title + '</button>';
+        var sec = '<section class="md-gal-section" data-group="' + gid + '">'
+          + '<div class="md-gal-sec-head"><h3 class="mb-0">' + g.title + '</h3><span class="md-gal-sec-line"></span></div>';
+        if (g.soon || !g.items || !g.items.length) {
+          sec += '<div class="md-soon" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)">Próximamente</div>';
+        } else {
+          sec += '<div class="md-gallery-grid">';
+          g.items.forEach(function (src) {
+            var isVideo = src.toLowerCase().endsWith('.mp4');
+            var media = isVideo
+              ? '<video src="' + src + '" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause();this.currentTime=0;"></video><div class="vov"><iconify-icon icon="lucide:play"></iconify-icon></div>'
+              : '<img src="' + src + '" alt="' + g.title + '" loading="lazy"><div class="vov"><iconify-icon icon="lucide:maximize-2"></iconify-icon></div>';
+            sec += '<div class="md-gal-item" onclick="openLightbox(\'' + src + '\')">' + media + '</div>';
+          });
+          sec += '</div>';
+        }
+        sec += '</section>';
+        gridHtml += sec;
+      });
+
+      filters.innerHTML = chipsHtml;
+      grid.innerHTML = gridHtml;
+
+      filters.addEventListener('click', function (e) {
+        var btn = e.target.closest('.md-chip');
+        if (!btn) return;
+        filters.querySelectorAll('.md-chip').forEach(function (c) { c.classList.remove('on'); });
+        btn.classList.add('on');
+        var f = btn.getAttribute('data-filter');
+        grid.querySelectorAll('.md-gal-section').forEach(function (s) {
+          s.classList.toggle('hide', f !== 'all' && s.getAttribute('data-group') !== f);
+        });
+      });
+
+      // Pre-seleccionar subcategoría si viene ?group=
+      var preGroup = params.get('group');
+      if (preGroup) {
+        var chip = filters.querySelector('.md-chip[data-filter="' + preGroup + '"]');
+        if (chip) chip.click();
+      }
+
+      if (window.AOS) AOS.init({ duration: 800, once: true });
+    })();
+
+    // Lightbox
+    window.openLightbox = function (src) {
+      var modal = $('#custom-modal');
+      var wrap = modal.find('.modal-content-wrapper');
+      var isVideo = src.toLowerCase().endsWith('.mp4');
+      wrap.html(isVideo
+        ? '<video src="' + src + '" class="lightbox-video" controls autoplay loop playsinline></video>'
+        : '<img src="' + src + '" class="lightbox-img">');
+      modal.addClass('active'); $('body').addClass('modal-open-blur'); modal.css('z-index', '10000');
+    };
+    $(document).ready(function () {
+      var modal = $('#custom-modal');
+      modal.on('click', function (e) {
+        if ($(e.target).hasClass('custom-modal-overlay') || $(e.target).closest('.modal-close').length) {
+          modal.removeClass('active'); $('body').removeClass('modal-open-blur');
+          setTimeout(function () { modal.find('.modal-content-wrapper').empty(); modal.css('z-index', ''); }, 300);
+        }
+      });
+      $(document).on('keydown', function (e) { if (e.key === 'Escape') modal.removeClass('active').css('z-index', ''); });
+    });
+  </script>
+</body>
+
+</html>

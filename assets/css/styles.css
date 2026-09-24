@@ -20158,3 +20158,610 @@ ul {
 }
 
 /*# sourceMappingURL=styles.css.map */
+
+/* ===================================================================
+   === MD REDESIGN — Glass oscuro Apple, tokens, botones, tema ===
+   =================================================================== */
+:root {
+  --md-red: #F20F0F;
+  --md-red-d: #c40c0c;
+  --md-dark: #1F2A2E;
+  --md-ink: #07090a;
+  --md-surface: #0d1316;
+  --md-surface-2: #111a1e;
+  --md-text: #ffffff;
+  --md-text-dim: rgba(255, 255, 255, .7);
+  --md-hairline: rgba(255, 255, 255, .10);
+  --r-card: 12px;
+  --r-btn: 9px;
+  --r-ctrl: 8px;
+  --r-img: 8px;
+  --md-glow: 0 0 60px rgba(242, 15, 15, .35);
+  --md-shadow: 0 12px 30px rgba(0, 0, 0, .45);
+}
+
+/* ---- Cristal Apple: contenedor + sub-capas ---- */
+.md-glass {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--r-card);
+  box-shadow: var(--md-shadow);
+}
+.md-glass > .mg-distort {
+  position: absolute; inset: 0; z-index: 0;
+  backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+  filter: url(#md-glass-distortion);
+}
+.md-glass > .mg-tint {
+  position: absolute; inset: 0; z-index: 1;
+  background: rgba(255, 255, 255, .10);
+}
+.md-glass > .mg-edge {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, .12),
+              inset 0 1px 0 rgba(255, 255, 255, .22);
+}
+.md-glass > .mg-content { position: relative; z-index: 3; }
+.md-glass--red > .mg-tint { background: rgba(242, 15, 15, .16); }
+.md-glass--solid-red > .mg-tint { background: rgba(242, 15, 15, .55); }
+.md-glass--btn { border-radius: var(--r-btn); }
+.md-glass--ctrl { border-radius: var(--r-ctrl); }
+
+/* Fallback sin backdrop-filter (Safari antiguo / no soporte) */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .md-glass > .mg-distort { background: rgba(255, 255, 255, .06); filter: none; }
+  .md-glass--red > .mg-distort,
+  .md-glass--red > .mg-tint { background: rgba(242, 15, 15, .14); }
+}
+
+/* ---- Tema oscuro base ---- */
+body { background: var(--md-ink); color: var(--md-text); }
+.md-dark, .md-section-dark { background: var(--md-ink); color: var(--md-text); }
+.md-surface { background: var(--md-surface); }
+
+/* Tipografía fluida */
+.md-fluid-h1 { font-size: clamp(2.4rem, 8vw, 6rem); line-height: 1.02; }
+.md-fluid-h2 { font-size: clamp(1.7rem, 4.5vw, 3rem); }
+
+/* Glow rojo utilitario */
+.md-glow-red { position: relative; }
+.md-glow-red::after { content: ""; position: absolute; inset: 0; z-index: -1; box-shadow: var(--md-glow); }
+
+/* ---- Botón estandarizado (sobre la primitiva de cristal) ---- */
+.md-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 46px; padding: 12px 22px; border: none; cursor: pointer;
+  border-radius: var(--r-btn); font-weight: 700;
+  font-size: clamp(.85rem, 1.4vw, 1rem); color: #fff; text-decoration: none;
+  transition: transform .15s cubic-bezier(.34, 1.56, .64, 1), filter .2s ease;
+}
+.md-btn:hover { transform: translateY(-2px); color: #fff; }
+.md-btn:active { transform: translateY(1px) scale(.99); }
+.md-btn:focus-visible { outline: 2px solid var(--md-red); outline-offset: 3px; }
+.md-btn .mg-content { display: inline-flex; align-items: center; gap: 10px; }
+.md-btn-ico { display: inline-flex; }
+@media (max-width: 576px) {
+  .md-btn { width: 100%; }
+  .md-btn.md-btn--auto { width: auto; }
+}
+
+/* ---- Segmented control (toggle de monedas) ---- */
+.md-seg { width: fit-content; padding: 4px; }
+.md-seg .md-cur-btn {
+  position: relative; z-index: 3; border: none; background: transparent;
+  color: var(--md-text-dim); font-weight: 700; font-size: .85rem;
+  padding: 8px 18px; border-radius: 6px; cursor: pointer; transition: .2s;
+}
+.md-seg .md-cur-btn.on { color: #fff; background: var(--md-red); box-shadow: 0 5px 14px rgba(242, 15, 15, .45); }
+
+/* ---- Precios con descuento (precio tachado + badge de % OFF) ---- */
+.md-price-old {
+  position: relative;
+  display: inline-block;
+  font-weight: 700;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  line-height: 1.2;
+  color: var(--md-text-dim);
+  opacity: .75;
+  padding-bottom: .25rem;   /* alinea la base con el precio grande */
+  white-space: nowrap;
+}
+.md-price-old::after {
+  content: "";
+  position: absolute;
+  left: -4%; right: -4%;
+  top: 46%;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--md-red);
+  transform: rotate(-8deg);
+  box-shadow: 0 0 10px rgba(242, 15, 15, .55);
+}
+.md-off-badge {
+  display: inline-flex; align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--md-red);
+  color: #fff;
+  font-size: .72rem; font-weight: 800; letter-spacing: .04em;
+  line-height: 1;
+  box-shadow: 0 4px 14px rgba(242, 15, 15, .4), 0 0 0 1px rgba(242, 15, 15, .35);
+  animation: mdOffPulse 2.4s ease-in-out infinite;
+}
+@keyframes mdOffPulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.07); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .md-off-badge { animation: none; }
+}
+
+/* ---- CTA "Pregunta por el paquete concierto" ---- */
+.md-concert-cta {
+  display: flex; align-items: center; gap: 18px;
+  width: 100%;
+  padding: 20px 24px;
+  border-radius: var(--r-card);
+  text-decoration: none;
+  color: var(--md-text, #fff);
+  background:
+    linear-gradient(120deg, rgba(242, 15, 15, .16), rgba(242, 15, 15, .04) 55%, transparent),
+    rgba(255, 255, 255, .04);
+  border: 1px solid rgba(242, 15, 15, .35);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .06);
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.md-concert-cta:hover {
+  color: var(--md-text, #fff);
+  transform: translateY(-2px);
+  border-color: rgba(242, 15, 15, .7);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .45), 0 0 24px rgba(242, 15, 15, .22);
+}
+.md-concert-cta:focus-visible { outline: 2px solid var(--md-red); outline-offset: 3px; }
+.md-concert-ico {
+  flex-shrink: 0;
+  width: 52px; height: 52px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--md-red); color: #fff; font-size: 1.5rem;
+  box-shadow: 0 6px 18px rgba(242, 15, 15, .45);
+}
+.md-concert-txt { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-width: 0; }
+.md-concert-txt strong { font-size: 1.05rem; font-weight: 700; }
+.md-concert-txt > span { font-size: .92rem; color: var(--md-text-dim); }
+.md-concert-txt b { color: #fff; font-weight: 700; }
+.md-concert-arrow {
+  flex-shrink: 0;
+  width: 44px; height: 44px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(255, 255, 255, .08); color: #fff; font-size: 1.15rem;
+  transition: background .2s ease, transform .2s ease;
+}
+.md-concert-cta:hover .md-concert-arrow { background: var(--md-red); transform: rotate(45deg); }
+@media (max-width: 575px) {
+  .md-concert-cta { flex-direction: column; text-align: center; gap: 12px; padding: 22px 18px; }
+  .md-concert-txt { align-items: center; }
+}
+
+/* ---- Acordeón de servicios (mobile) ---- */
+.md-acc { display: flex; flex-direction: column; gap: 12px; }
+.md-acc-head {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  background: transparent; border: none; color: #fff; font-weight: 700;
+  padding: 16px; cursor: pointer; font-size: 1.05rem; text-align: left;
+}
+.md-acc-head small { color: var(--md-red); font-weight: 800; margin-right: 8px; }
+.md-acc-body { max-height: 0; overflow: hidden; transition: max-height .35s ease; padding: 0 16px; }
+.md-acc-body > * + * { margin-top: 12px; }
+.md-acc-body img { border-radius: var(--r-img); width: 100%; }
+.md-acc-item.open .md-acc-body { max-height: 700px; padding-bottom: 16px; }
+.md-acc-ico { transition: transform .3s; font-size: 1.4rem; line-height: 1; color: var(--md-text-dim); }
+.md-acc-item.open .md-acc-ico { transform: rotate(45deg); color: var(--md-red); }
+
+/* ---- "Próximamente" placeholder (galerías sin assets) ---- */
+.md-soon {
+  display: flex; align-items: center; justify-content: center; min-height: 180px;
+  color: var(--md-text-dim); font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  border-radius: var(--r-card);
+}
+
+/* ---- Ayudas de superficie oscura para overrides de Bootstrap ---- */
+.md-dark .text-dark { color: #fff !important; }
+.md-dark .border, .md-dark .border-top, .md-dark .border-bottom { border-color: rgba(255,255,255,.12) !important; }
+
+/* ===================================================================
+   === MD REDESIGN — Remapeo de tema oscuro global (page-wrapper) ===
+   =================================================================== */
+/* El template usaba .text-dark como color de texto principal sobre fondos
+   claros. Ahora el sitio es oscuro: invertimos a claro por defecto y
+   re-protegemos los elementos que viven sobre superficies claras/sólidas. */
+.page-wrapper .text-dark { color: var(--md-text) !important; }
+.page-wrapper .bg-white .text-dark,
+.page-wrapper .bg-white.text-dark,
+.page-wrapper .bg-primary .text-dark,
+.page-wrapper .bg-primary.text-dark,
+.page-wrapper .badge.bg-white .text-dark { color: var(--md-dark) !important; }
+
+/* Bordes/divisores claros sobre fondo oscuro */
+.page-wrapper .border,
+.page-wrapper .border-top,
+.page-wrapper .border-bottom { border-color: rgba(255,255,255,.12) !important; }
+.page-wrapper hr.border-line { border-color: rgba(255,255,255,.18); opacity: 1; }
+
+/* Tarjetas → cristal frost (glass-lite) en todo el sitio, sin cirugía HTML */
+.page-wrapper .card {
+  position: relative;
+  background: rgba(255,255,255,.05);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  backdrop-filter: blur(14px) saturate(130%);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--r-card);
+  color: var(--md-text);
+  box-shadow: var(--md-shadow);
+}
+.page-wrapper .card .text-dark,
+.page-wrapper .card h1, .page-wrapper .card h2, .page-wrapper .card h3,
+.page-wrapper .card h4, .page-wrapper .card h5, .page-wrapper .card h6,
+.page-wrapper .card p { color: var(--md-text); }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .page-wrapper .card { background: var(--md-surface-2); }
+}
+
+/* Badges contorneados (tags) sobre tarjetas oscuras */
+.page-wrapper .badge.text-dark.border { color: var(--md-text) !important; border-color: rgba(255,255,255,.25) !important; }
+
+/* Formularios sobre fondo oscuro */
+.page-wrapper .form-control {
+  background: transparent; color: #fff; border-color: rgba(255,255,255,.2);
+}
+.page-wrapper .form-control::placeholder { color: rgba(255,255,255,.4); }
+.page-wrapper .form-control:focus {
+  background: transparent; color: #fff; box-shadow: none; border-color: var(--md-red);
+}
+.page-wrapper .form-floating > label { color: rgba(255,255,255,.5); }
+
+/* Nav-tabs de servicios sobre oscuro */
+.page-wrapper .nav-tabs .nav-link { color: var(--md-text); }
+.page-wrapper .nav-tabs .nav-link.active { color: var(--md-red); }
+
+/* ---- Fondos de sección a oscuro (solo secciones, no accents) ---- */
+.page-wrapper .bg-light-gray { background: var(--md-surface) !important; }
+.client-logos.bg-white { background: var(--md-ink) !important; }
+.banner-section, .banner-inner-section { background-color: var(--md-ink); }
+
+/* ===================================================================
+   === MD REDESIGN — Botones glass (todos), logos, redondeo, mobile ===
+   =================================================================== */
+
+/* Todos los botones del template → mantienen su FORMA original (pill + círculo)
+   pero con efecto glass frost uniforme y suficiente opacidad */
+.page-wrapper .btn {
+  position: relative;
+  border-radius: 100px;
+  min-height: 48px;
+  background: rgba(255,255,255,.12);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(255,255,255,.18);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.25), var(--md-shadow);
+  transition: transform .15s cubic-bezier(.34,1.56,.64,1), background .2s ease;
+}
+.page-wrapper .btn:hover { transform: translateY(-2px); color: #fff; background: rgba(255,255,255,.18); }
+.page-wrapper .btn:active { transform: translateY(1px) scale(.99); }
+.page-wrapper .btn:focus-visible { outline: 2px solid var(--md-red); outline-offset: 3px; }
+.page-wrapper .btn .btn-text { color: #fff !important; }
+/* Variante roja */
+.page-wrapper .btn-primary { background: rgba(242,15,15,.62); border-color: rgba(255,120,120,.4); }
+.page-wrapper .btn-primary:hover { background: rgba(242,15,15,.78); }
+/* Botones del hero sobre el video: más opacos para no perderse */
+.banner-section .btn { background: rgba(15,18,20,.55); border-color: rgba(255,255,255,.22); }
+.banner-section .btn:hover { background: rgba(15,18,20,.7); }
+.banner-section .btn-primary { background: rgba(242,15,15,.85); }
+.banner-section .btn-primary:hover { background: rgba(242,15,15,.95); }
+/* Círculo del ícono (flecha): cristal blanco translúcido con flecha blanca */
+.page-wrapper .btn .btn-icon {
+  background: rgba(255,255,255,.22) !important;
+  -webkit-backdrop-filter: blur(6px) saturate(150%);
+  backdrop-filter: blur(6px) saturate(150%);
+  border: 1px solid rgba(255,255,255,.5);
+  color: #fff !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.4);
+}
+/* Botones sociales (contacto) */
+.page-wrapper .btn-social { justify-content: space-between; }
+
+/* Logos del marquee: visibles (claros) sobre fondo oscuro */
+.page-wrapper .gray-logo {
+  filter: brightness(0) invert(1) !important;
+  opacity: .65 !important;
+}
+.page-wrapper .gray-logo:hover, .page-wrapper .gray-logo:active {
+  filter: brightness(0) saturate(100%) invert(13%) sepia(91%) saturate(7401%) hue-rotate(359deg) brightness(97%) contrast(114%) !important;
+  opacity: 1 !important;
+}
+
+/* Redondeo macOS en medios y separadores (nada recto) */
+.page-wrapper .portfolio-img { border-radius: var(--r-card); overflow: hidden; }
+.page-wrapper .portfolio-img img { border-radius: var(--r-card); }
+.page-wrapper .services-tab .tab-content img { border-radius: var(--r-card); }
+.page-wrapper .about-img img, .page-wrapper .meet-team-img,
+.page-wrapper .meet-team-img img { border-radius: var(--r-card); overflow: hidden; }
+.page-wrapper .banner-inner-section { border-radius: 0 0 var(--r-card) var(--r-card); overflow: hidden; }
+.page-wrapper hr.border-line.bg-white { background: rgba(255,255,255,.22) !important; border: 0; height: 1px; border-radius: 2px; }
+.page-wrapper hr.border-line { border-radius: 2px; }
+
+/* Inicio mobile: el carrusel de Productos Destacados se vuelve grid (todo visible) */
+@media (max-width: 991px) {
+  .featured-projects-slider.md-no-carousel .owl-carousel {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    padding: 0 12px;
+  }
+  .featured-projects-slider.md-no-carousel .owl-carousel .item { width: 100% !important; }
+  .featured-projects-slider.md-no-carousel .portfolio { gap: 12px !important; }
+  .featured-projects-slider.md-no-carousel .portfolio-details h3 { font-size: 1rem; }
+}
+
+/* Espaciado/tipografía estilo referencia (más aire, títulos potentes) */
+.page-wrapper h1, .page-wrapper h2 { letter-spacing: -.02em; }
+.md-fluid-h1, .md-fluid-h2 { font-weight: 800; }
+
+/* ===================================================================
+   === MD REDESIGN v2 — tipografía display, títulos claros, luz, capas ===
+   =================================================================== */
+
+/* Tipografía (Inter inyectada por custom.js) — neutra, cercana a la original */
+body, .page-wrapper, h1, h2, h3, h4, h5, h6, .btn, .md-fluid-h1, .md-fluid-h2 {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+.md-fluid-h1 { font-weight: 800; letter-spacing: -.03em; }
+
+/* Títulos SIEMPRE claros sobre fondo oscuro (mata los grises sobre negro) */
+.page-wrapper h1, .page-wrapper h2, .page-wrapper h3,
+.page-wrapper h4, .page-wrapper h5, .page-wrapper h6 { color: var(--md-text) !important; }
+
+/* Fondo con iluminación/textura tipo referencia */
+body {
+  background:
+    radial-gradient(70% 55% at 50% -8%, rgba(242,15,15,.16), transparent 60%),
+    radial-gradient(50% 40% at 100% 30%, rgba(242,15,15,.07), transparent 60%),
+    var(--md-ink);
+  background-attachment: fixed;
+}
+
+/* Sección clara reutilizable (p.ej. "Sobre nosotros") */
+.page-wrapper .md-light {
+  background: #f3f3f4 !important;
+  color: var(--md-dark);
+  border-radius: 32px;
+  position: relative;
+  z-index: 2;
+}
+.page-wrapper .md-light h1, .page-wrapper .md-light h2, .page-wrapper .md-light h3,
+.page-wrapper .md-light h4, .page-wrapper .md-light h5, .page-wrapper .md-light h6,
+.page-wrapper .md-light p, .page-wrapper .md-light .text-dark,
+.page-wrapper .md-light .text-white { color: var(--md-dark) !important; }
+.page-wrapper .md-light .text-opacity-70, .page-wrapper .md-light .text-white.text-opacity-70 { color: rgba(31,42,46,.7) !important; }
+.page-wrapper .md-light .border, .page-wrapper .md-light .border-top,
+.page-wrapper .md-light .border-bottom { border-color: rgba(0,0,0,.12) !important; }
+/* En sección clara, botones vuelven a oscuro-glass para contraste */
+.page-wrapper .md-light .btn { background: rgba(20,20,24,.9); color: #fff; border-color: rgba(0,0,0,.15); }
+.page-wrapper .md-light .btn .btn-text { color: #fff !important; }
+.page-wrapper .md-light .btn .btn-icon { background: var(--md-red) !important; color: #fff !important; }
+
+/* Sección bajo el hero: borde superior redondeado que solapa levemente el hero */
+.page-wrapper .featured-projects {
+  position: relative;
+  z-index: 3;
+  margin-top: -42px;
+  border-radius: 34px 34px 0 0;
+  background: var(--md-surface);
+}
+/* Tarjetas: hover lift y esquina coherente */
+.page-wrapper .card { transition: transform .25s ease, box-shadow .25s ease; }
+.page-wrapper .card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(0,0,0,.5); }
+
+/* ===================================================================
+   === MD REDESIGN v3 — reorden, glow rojo+neón magenta, pricing mobile ===
+   =================================================================== */
+
+/* Acento neón magenta */
+:root { --md-magenta: #ff2bd6; }
+
+/* Reorden de secciones del inicio sin mover HTML:
+   hero · productos · quiénes somos · logos · precios · lo que hacemos · contacto */
+.page-wrapper.md-home { display: flex; flex-direction: column; }
+.page-wrapper.md-home > .banner-section   { order: 1; }
+.page-wrapper.md-home > .featured-projects{ order: 2; }
+.page-wrapper.md-home > .about-section    { order: 3; }
+.page-wrapper.md-home > .client-logos     { order: 4; }
+.page-wrapper.md-home > .pricing-section  { order: 5; }
+.page-wrapper.md-home > .services         { order: 6; }
+.page-wrapper.md-home > .Recent-news      { order: 7; }
+.page-wrapper.md-home > .get-in-touch     { order: 8; }
+
+/* Hero: subir contenido (más aire abajo) */
+.banner-section .pb-8 { padding-bottom: 5.5rem !important; }
+@media (min-width: 992px){ .banner-section .pb-8 { padding-bottom: 8rem !important; } }
+
+/* Iluminación roja + toque neón magenta en secciones oscuras */
+.page-wrapper .services,
+.page-wrapper .pricing-section,
+.page-wrapper .featured-projects,
+.page-wrapper .get-in-touch { position: relative; overflow: hidden; }
+.page-wrapper .services::before,
+.page-wrapper .pricing-section::before,
+.page-wrapper .featured-projects::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(40% 50% at 8% 0%, rgba(242,15,15,.20), transparent 60%),
+    radial-gradient(35% 45% at 100% 100%, rgba(242,15,15,.10), transparent 60%);
+}
+.page-wrapper .services > .container,
+.page-wrapper .pricing-section > .container,
+.page-wrapper .featured-projects > * { position: relative; z-index: 1; }
+
+/* Detalles neón magenta */
+.page-wrapper .badge.text-bg-dark { box-shadow: 0 0 0 1px rgba(242,15,15,.35), 0 0 14px rgba(242,15,15,.25); }
+.page-wrapper .nav-tabs .nav-link.active { text-shadow: 0 0 18px rgba(242,15,15,.5); }
+.md-seg .md-cur-btn.on { box-shadow: 0 5px 14px rgba(242,15,15,.45), 0 0 18px rgba(242,15,15,.3); }
+.page-wrapper .featured-projects { box-shadow: 0 -1px 0 rgba(242,15,15,.25); }
+
+/* Productos destacados: 2 por fila completos en mobile (sin cortes) */
+@media (max-width: 991px){
+  .featured-projects-slider.md-no-carousel { overflow: hidden !important; padding: 0; }
+  .featured-projects-slider.md-no-carousel .owl-carousel {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    padding: 0 16px;
+    max-width: 100%;
+  }
+  .featured-projects-slider.md-no-carousel .owl-carousel .item { min-width: 0; width: auto !important; }
+  .featured-projects-slider.md-no-carousel .portfolio { gap: 10px !important; }
+  .featured-projects-slider.md-no-carousel .portfolio-img img { width: 100%; height: 100%; object-fit: cover; }
+  .featured-projects-slider.md-no-carousel .portfolio-details h3 { font-size: .95rem; }
+  /* Badges que envuelven y no desbordan */
+  .featured-projects-slider.md-no-carousel .portfolio-details .hstack { flex-wrap: wrap; gap: 6px !important; }
+  .featured-projects-slider.md-no-carousel .portfolio-details .badge { font-size: .62rem; padding: 4px 8px; }
+}
+
+/* Precios en mobile: tarjetas anchas y bajas (estilo referencia) */
+@media (max-width: 575px){
+  .pricing-section .pricing-category, .pricing-section #pricing-container { row-gap: 14px; }
+  .pricing-section [class*="col-"] { margin-bottom: 0 !important; }
+  .pricing-section .card-body { padding: 18px 20px !important; gap: 14px !important; }
+  /* Nombre + precio en una fila */
+  .pricing-section .card-body > .d-flex.flex-column.gap-6 {
+    flex-direction: row !important; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 12px !important;
+  }
+  .pricing-section .card-body > .d-flex.flex-column.gap-6 > p { flex-basis: 100%; font-size: .8rem; margin-top: 4px; }
+  .pricing-section .card-body .hstack.gap-2 h3 { font-size: 1.5rem; }
+  /* Features en 2 columnas compactas */
+  .pricing-section .card .border-top { padding-top: 14px !important; }
+  .pricing-section .card .border-top > .d-flex { gap: 12px !important; }
+  .pricing-section .card ul.list-unstyled { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px !important; }
+  .pricing-section .card ul.list-unstyled li { gap: 8px !important; }
+  .pricing-section .card ul.list-unstyled li h6 { font-size: .72rem; line-height: 1.25; }
+  .pricing-section .card ul.list-unstyled li .round-32 { width: 20px; height: 20px; }
+  .pricing-section .card ul.list-unstyled li .round-32 iconify-icon { font-size: .7rem; }
+  .pricing-section .card .btn { min-height: 44px; }
+}
+
+/* ===================================================================
+   === MD REDESIGN — Galería "Ver todos" ===
+   =================================================================== */
+.md-gallery-filters { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.md-gallery-filters .md-chip {
+  border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.06); color: #fff;
+  font-weight: 600; font-size: .85rem; padding: 8px 16px; border-radius: 999px; cursor: pointer;
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); transition: .2s;
+}
+.md-gallery-filters .md-chip:hover { background: rgba(255,255,255,.12); }
+.md-gallery-filters .md-chip.on {
+  background: var(--md-red); border-color: transparent;
+  box-shadow: 0 6px 16px rgba(242,15,15,.4), 0 0 16px rgba(242,15,15,.25);
+}
+.md-gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; align-items: start; }
+@media (max-width: 1199px){ .md-gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 767px){ .md-gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+.md-gal-item {
+  border-radius: var(--r-card); overflow: hidden;
+  position: relative; cursor: pointer; border: 1px solid rgba(255,255,255,.1);
+}
+.md-gal-item img, .md-gal-item video { width: 100%; display: block; border-radius: var(--r-card); }
+.md-gal-item .vov {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,.25); color: #fff; font-size: 2rem; opacity: 0; transition: .2s;
+}
+.md-gal-item:hover .vov { opacity: 1; }
+.md-gal-item.hide { display: none; }
+.md-gal-soon { break-inside: avoid; margin-bottom: 14px; }
+
+/* Secciones de la galería "Ver todos" con título + línea separadora */
+.md-gal-section { margin-bottom: 2.75rem; }
+.md-gal-section.hide { display: none; }
+.md-gal-sec-head { display: flex; align-items: center; gap: 16px; margin-bottom: 1.1rem; }
+.md-gal-sec-head h3 { font-size: clamp(1.05rem, 2.4vw, 1.5rem); white-space: nowrap; color: var(--md-text); }
+.md-gal-sec-line { flex: 1 1 auto; height: 1px; background: linear-gradient(90deg, rgba(255,255,255,.28), rgba(255,255,255,0)); }
+
+/* Enlace "Ver todos" por sección (texto subrayado, no botón) */
+.gallery-row-head { margin-bottom: 1rem; }
+.md-vertodos-link {
+  color: var(--md-red); font-weight: 600; font-size: .9rem;
+  text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; cursor: pointer;
+  transition: color .2s ease;
+}
+.md-vertodos-link:hover { color: #fff; text-decoration: underline; }
+@media (min-width: 768px) { .gallery-row-head { padding-right: 1.5rem; } }
+
+/* Menos espacio vertical entre secciones de galería en mobile */
+@media (max-width: 767px){
+  .gallery-row { margin-bottom: 1.5rem !important; }
+  .gallery-row-head { margin-bottom: .6rem; }
+  #gallerySection { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+}
+
+/* Texto de la sección de logos (inicio) en blanco
+   (gana a .bg-white .text-dark porque la sección tiene clase bg-white) */
+.page-wrapper .client-logos.bg-white h5,
+.page-wrapper .client-logos .text-dark,
+.page-wrapper .client-logos h5 { color: var(--md-text) !important; }
+
+/* Menos espacio entre la sección de logos y "Planes a tu medida" (inicio) */
+.md-home .client-logos { padding-top: 2rem; padding-bottom: 1rem; }
+.md-home .pricing-section { padding-top: 2.5rem !important; }
+
+/* Formulario: ocultar placeholder en floating (evita texto duplicado con el label) */
+.page-wrapper .form-floating > .form-control::placeholder { color: transparent !important; }
+
+/* Quitar el caret extra de Bootstrap en el selector de productos (deja solo el chevron) */
+#productTypeDropdown.dropdown-toggle::after { display: none !important; }
+
+/* "Últimos Lanzamientos": más aire arriba e imágenes redondeadas */
+.page-wrapper .Recent-news { padding-top: 3.5rem !important; }
+.page-wrapper .Recent-news img { border-radius: var(--r-card); }
+.page-wrapper .Recent-news .blog-img, .page-wrapper .Recent-news .blog-card-img { border-radius: var(--r-card); overflow: hidden; }
+
+/* Preloader desactivado por completo (evita bloqueos al cambiar de página) */
+#preloader { display: none !important; }
+
+/* "Sobre Motion Dreams": 3 stats en una fila en mobile */
+@media (max-width: 575px) {
+  .about-section .col-4 > .d-flex { gap: .45rem !important; padding-top: .9rem !important; }
+  .about-section .col-4 h2.fs-14 { font-size: 1.35rem; letter-spacing: -.02em; }
+  .about-section .col-4 p { font-size: .68rem; line-height: 1.2; }
+}
+
+/* ===================================================================
+   === MD REDESIGN — Táctil: un solo toque (sin doble tap por :hover) ===
+   =================================================================== */
+@media (hover: none) {
+  /* Tarjetas de proyectos: TODA la imagen es el botón (un solo toque), no se abre la imagen */
+  .portfolio-img .portfolio-overlay {
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    background-color: transparent !important;
+  }
+  .portfolio-img .portfolio-overlay a {
+    position: absolute !important; inset: 0 !important; top: 0 !important; left: 0 !important;
+    width: 100% !important; height: 100% !important; transform: none !important;
+    border-radius: 0 !important; background: transparent !important;
+    display: flex !important; align-items: center; justify-content: center;
+  }
+  .portfolio-img .portfolio-overlay a iconify-icon {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--md-red); color: #fff !important;
+    display: flex; align-items: center; justify-content: center;
+  }
+  /* Evitar estados hover "pegados" que desplazan elementos en táctil */
+  .page-wrapper .btn:hover,
+  .page-wrapper .card:hover,
+  .page-wrapper .gray-logo:hover,
+  .md-gal-item:hover,
+  .resources-img:hover { transform: none !important; }
+}
