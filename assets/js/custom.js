@@ -146,7 +146,7 @@ $(function () {
     window.pricingExamples = {
         'flyer-individual': {
             title: 'Flyer Individual',
-            desc: 'Impacto visual inmediato en una sola pieza. Incluye diseño personalizado con hasta 2 revisiones, optimización para redes sociales (Feed y Stories) y entrega de archivos en alta resolución (JPG/PNG). Ideal para lanzamientos rápidos o anuncios puntuales que requieren profesionalismo absoluto.',
+            desc: '<span class="fs-4 fw-bold text-primary d-block mb-3">$60k / unit</span>Impacto visual inmediato en una sola pieza. Incluye diseño personalizado con hasta 2 revisiones, optimización para redes sociales (Feed y Stories) y entrega de archivos en alta resolución (JPG/PNG). Ideal para lanzamientos rápidos o anuncios puntuales que requieren profesionalismo absoluto.',
             items: [
                 { type: 'image', src: '../assets/images/portfolio/im1.jpeg', label: 'Propuesta Personalizada' }
             ]
@@ -167,7 +167,7 @@ $(function () {
             items: [
                 { type: 'image', src: '../assets/images/portfolio/im1.jpeg', label: 'Flyer Principal', size: 'size-tall' },
                 { type: 'image', src: '../assets/images/portfolio/fly.png', label: 'Mapa de ubicación' },
-                { type: 'image', src: '../assets/images/portfolio/im3.png', label: 'Lista de servicios' },
+                { type: 'image', src: '../assets/images/portfolio/im3.png', label: 'Lista de Precios' },
                 { type: 'image', src: '../assets/images/portfolio/im2.jpeg', label: 'Métodos de pago' }
             ]
         },
@@ -419,6 +419,69 @@ $(function () {
     }
     if (document.body) inject();
     else document.addEventListener('DOMContentLoaded', inject);
+})();
+
+// 2) Toggle de monedas (default COP, recordado en localStorage)
+//    COP es el precio base escrito en el HTML ($60k, $220k, $1.5M...).
+//    USD/EUR se calculan con la tasa de abajo (margen ya incluido) y SIEMPRE
+//    se redondean HACIA ARRIBA al múltiplo de 5 (33 -> 35). 1€ = 1$ (misma cifra).
+window.mdCurrency = (function () {
+    var KEY = 'md-currency';
+    var DEFAULT = 'cop';
+    var COP_PER_USD = 3160;   // tasa base con margen incluido
+    var EUR_PER_USD = 1;      // 1€ = 1$ (misma cifra)
+    // Precios: "$60k", "$1M", "$1.5M", "$220k"
+    var RE = /^\$\s*([0-9]+(?:[.,][0-9]+)?)\s*([kKmM])?$/;
+
+    function parseCop(txt) {
+        var m = RE.exec(String(txt).trim());
+        if (!m) return null;
+        var n = parseFloat(m[1].replace(',', '.'));
+        if (isNaN(n)) return null;
+        var suf = (m[2] || '').toLowerCase();
+        if (suf === 'k') n *= 1e3;
+        else if (suf === 'm') n *= 1e6;
+        return n;
+    }
+    function ceil5(n) { return Math.ceil(n / 5) * 5; }
+    function toUsd(cop) { return ceil5(cop / COP_PER_USD); }
+
+    function seed() {
+        document.querySelectorAll('.card h3.mb-0, .md-price-old').forEach(function (h) {
+            if (h.hasAttribute('data-usd')) return;
+            var cop = h.textContent.trim();
+            var n = parseCop(cop);
+            if (n === null) return;
+            var usd = toUsd(n);
+            h.setAttribute('data-cop', cop);
+            h.setAttribute('data-usd', '$' + usd);
+            h.setAttribute('data-eur', '€' + ceil5(usd * EUR_PER_USD));
+        });
+    }
+    function apply(cur) {
+        document.querySelectorAll('[data-usd]').forEach(function (n) {
+            var v = n.getAttribute('data-' + cur);
+            if (v) n.textContent = v;
+        });
+        document.querySelectorAll('.md-cur-btn').forEach(function (b) {
+            b.classList.toggle('on', b.getAttribute('data-cur') === cur);
+        });
+    }
+    function get() { return localStorage.getItem(KEY) || DEFAULT; }
+    return {
+        refresh: function () { seed(); apply(get()); },
+        set: function (cur) { localStorage.setItem(KEY, cur); apply(cur); }
+    };
+})();
+(function wireCurrency() {
+    function init() { window.mdCurrency.refresh(); }
+    if (document.readyState !== 'loading') init();
+    else document.addEventListener('DOMContentLoaded', init);
+    // Delegación en document: funciona con botones estáticos o inyectados, sin importar el timing
+    document.addEventListener('click', function (e) {
+        var b = e.target.closest && e.target.closest('.md-cur-btn');
+        if (b) { e.preventDefault(); window.mdCurrency.set(b.getAttribute('data-cur')); }
+    });
 })();
 
 // 3) Acordeón de servicios (mobile)
