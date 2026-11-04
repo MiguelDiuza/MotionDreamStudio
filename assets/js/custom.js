@@ -13,7 +13,7 @@ $(function () {
     // Featured Owl Carousel — en mobile NO se inicializa (se muestra como grid, todo visible)
     if (window.innerWidth < 992) {
         $('.featured-projects-slider').addClass('md-no-carousel');
-    } else
+    } else if ($.fn.owlCarousel) // no todas las páginas cargan Owl Carousel
     $('.featured-projects-slider .owl-carousel').owlCarousel({
         center: true,
         loop: true,
@@ -72,11 +72,12 @@ $(function () {
         });
     }
 
+    // No todas las páginas tienen el botón (p. ej. projects-detail.html)
     const btn = document.getElementById("scrollToTopBtn");
-    btn.addEventListener("click", scrollToTop);
+    if (btn) btn.addEventListener("click", scrollToTop);
 
     window.onscroll = function () {
-        const btn = document.getElementById("scrollToTopBtn");
+        if (!btn) return;
         if (document.documentElement.scrollTop > 100 || document.body.scrollTop > 100) {
             btn.style.display = "flex";
         } else {
@@ -85,7 +86,7 @@ $(function () {
     };
 
 
-    // Precios en mobile: animar desde los lados (no desde abajo)
+    // Planes en mobile: animar desde los lados (no desde abajo)
     window.mdPricingAnim = function () {
         if (window.innerWidth > 575) return;
         document.querySelectorAll('.pricing-section .card[data-aos]').forEach(function (c, i) {
@@ -316,9 +317,8 @@ $(function () {
 
 
     // EmailJS Configuration
-    (function () {
-        emailjs.init("f8tqC3UKNx_OrJjed"); // Public Key
-    })();
+    // Solo index.html y contact.html cargan EmailJS
+    if (window.emailjs) emailjs.init("f8tqC3UKNx_OrJjed"); // Public Key
 
     // Handle Contact Form Submission
     $('form').on('submit', function (e) {
@@ -375,10 +375,12 @@ $(function () {
 
     // Preloader: SOLO en la primera carga de la sesión.
     // Al navegar entre páginas se oculta al instante (no reaparece).
-    if (sessionStorage.getItem('md-loaded')) {
+    // sessionStorage puede lanzar error (modo privado, cookies bloqueadas): entonces se trata como primera carga.
+    var mdSeen = false;
+    try { mdSeen = !!sessionStorage.getItem('md-loaded'); sessionStorage.setItem('md-loaded', '1'); } catch (e) { }
+    if (mdSeen) {
         hidePreloader();
     } else {
-        sessionStorage.setItem('md-loaded', '1');
         $(window).on('load', function () { setTimeout(hidePreloader, 400); });
         // Cierre garantizado pase lo que pase con los recursos
         setTimeout(hidePreloader, 2500);
