@@ -184,15 +184,19 @@
   <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/libs/aos-master/dist/aos.js"></script>
   <script src="assets/js/custom.js"></script>
+  <script src="assets/js/md-config.js"></script>
   <script src="assets/js/gallery-data.js"></script>
+  <script src="assets/js/gallery-source.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
 
   <script>
-    (function () {
+    // Fuente única: Supabase si está configurado (assets/js/md-config.js); si no, assets/js/gallery-data.js
+    window.mdLoadGallery().then(function (GALLERY) {
+      var esc = window.mdEsc;
       function slug(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, '-'); }
       var params = new URLSearchParams(location.search);
       var cat = params.get('cat') || 'flyers';
-      var data = window.MD_GALLERY[cat] || window.MD_GALLERY['flyers'];
+      var data = GALLERY[cat] || GALLERY['flyers'];
 
       document.getElementById('galTitle').innerText = data.title;
       document.getElementById('galSubtitle').innerText = data.subtitle;
@@ -205,19 +209,19 @@
 
       data.groups.forEach(function (g) {
         var gid = slug(g.title);
-        chipsHtml += '<button class="md-chip" data-filter="' + gid + '">' + g.title + '</button>';
+        chipsHtml += '<button class="md-chip" data-filter="' + gid + '">' + esc(g.title) + '</button>';
         var sec = '<section class="md-gal-section" data-group="' + gid + '">'
-          + '<div class="md-gal-sec-head"><h3 class="mb-0">' + g.title + '</h3><span class="md-gal-sec-line"></span></div>';
+          + '<div class="md-gal-sec-head"><h3 class="mb-0">' + esc(g.title) + '</h3><span class="md-gal-sec-line"></span></div>';
         if (g.soon || !g.items || !g.items.length) {
           sec += '<div class="md-soon" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)">Próximamente</div>';
         } else {
           sec += '<div class="md-gallery-grid">';
-          g.items.forEach(function (src) {
-            var isVideo = src.toLowerCase().endsWith('.mp4');
-            var media = isVideo
-              ? '<video src="' + src + '" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause();this.currentTime=0;"></video><div class="vov"><iconify-icon icon="lucide:play"></iconify-icon></div>'
-              : '<img src="' + src + '" alt="' + g.title + '" loading="lazy"><div class="vov"><iconify-icon icon="lucide:maximize-2"></iconify-icon></div>';
-            sec += '<div class="md-gal-item" onclick="openLightbox(\'' + src + '\')">' + media + '</div>';
+          g.items.forEach(function (raw) {
+            var src = esc(raw);
+            var media = window.mdIsVideo(raw)
+              ? '<video src="' + src + '" muted loop playsinline preload="metadata" onmouseover="this.play()" onmouseout="this.pause();this.currentTime=0;"></video><div class="vov"><iconify-icon icon="lucide:play"></iconify-icon></div>'
+              : '<img src="' + src + '" alt="' + esc(g.title) + '" loading="lazy"><div class="vov"><iconify-icon icon="lucide:maximize-2"></iconify-icon></div>';
+            sec += '<div class="md-gal-item" data-src="' + src + '">' + media + '</div>';
           });
           sec += '</div>';
         }
@@ -227,6 +231,10 @@
 
       filters.innerHTML = chipsHtml;
       grid.innerHTML = gridHtml;
+      grid.addEventListener('click', function (e) {
+        var it = e.target.closest('[data-src]');
+        if (it) openLightbox(it.getAttribute('data-src'));
+      });
 
       filters.addEventListener('click', function (e) {
         var btn = e.target.closest('.md-chip');
@@ -247,16 +255,16 @@
       }
 
       if (window.AOS) AOS.init({ duration: 800, once: true });
-    })();
+    });
 
     // Lightbox
     window.openLightbox = function (src) {
       var modal = $('#custom-modal');
       var wrap = modal.find('.modal-content-wrapper');
-      var isVideo = src.toLowerCase().endsWith('.mp4');
-      wrap.html(isVideo
-        ? '<video src="' + src + '" class="lightbox-video" controls autoplay loop playsinline></video>'
-        : '<img src="' + src + '" class="lightbox-img">');
+      var safe = window.mdEsc(src);
+      wrap.html(window.mdIsVideo(src)
+        ? '<video src="' + safe + '" class="lightbox-video" controls autoplay loop playsinline></video>'
+        : '<img src="' + safe + '" class="lightbox-img">');
       modal.addClass('active'); $('body').addClass('modal-open-blur'); modal.css('z-index', '10000');
     };
     $(document).ready(function () {

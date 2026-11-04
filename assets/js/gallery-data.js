@@ -1,10 +1,11 @@
-/* Datos de galería por categoría (fuente para gallery.html "Ver todos") */
+/* Datos LOCALES de la galería (respaldo). Si Supabase está configurado en md-config.js,
+   la galería se lee de Supabase y esto solo se usa si falla la conexión. */
 window.MD_GALLERY = {
   'flyers': {
     title: 'Flyers',
     subtitle: 'Eventos, conciertos, urbanos, corporativos y más.',
     groups: [
-      { title: 'Flyers Premium', items: ['assets/images/flyers/flyerPremium1.jpg', 'assets/images/flyers/flyerPremium2.jpg', 'assets/images/flyers/flyerPremium3.jpg', 'assets/images/flyers/flyerPremium4.jpg', 'assets/images/flyers/flyerPremium5.jpg', 'assets/images/flyers/flyerPremium6.jpg'] },
+      { title: 'Flyers Premium', items: ['assets/images/flyers/flyerPremium1.jpg', 'assets/images/flyers/flyerPremium2.jpg', 'assets/images/flyers/flyerPremium3.jpg', 'assets/images/flyers/flyerPremium4.jpg', 'assets/images/flyers/flyerPremium5.jpg'] },
       { title: 'Conciertos y Festivales', items: ['assets/images/flyers/flyerconcierto.jpg', 'assets/images/flyers/flyerconcierto2.jpg', 'assets/images/flyers/flyerconcierto3.jpeg', 'assets/images/flyers/flyer concierto4.jpeg', 'assets/images/flyers/flyer concierto5.jpeg', 'assets/images/flyers/conciertoLanzamiento.png', 'assets/images/flyers/flyerEvent.jpg', 'assets/images/flyers/evento1.jpeg', 'assets/images/flyers/evento2.jpeg', 'assets/images/flyers/evento3.jpeg', 'assets/images/flyers/evento4.jpeg', 'assets/images/flyers/evento5.jpeg', 'assets/images/flyers/evento6.jpeg', 'assets/images/flyers/evento7.jpeg', 'assets/images/flyers/nuevo1.jpeg', 'assets/images/flyers/nuevo2.jpg'] },
       { title: 'Flyers Urbanos', items: ['assets/images/flyers/flyerUrbano.jpeg', 'assets/images/flyers/flyerUrbano2.jpeg', 'assets/images/flyers/flyerUrbano3.jpeg', 'assets/images/flyers/flyerUrbano4.jpeg', 'assets/images/flyers/flyerUrbano5.jpg', 'assets/images/flyers/urbano1.jpeg'] },
       { title: 'Flyers Night clubs', items: ['assets/images/flyers/nigth1.jpeg', 'assets/images/flyers/nigth2.jpeg', 'assets/images/flyers/night3.jpeg', 'assets/images/flyers/nigth4.jpeg', 'assets/images/flyers/night5.jpeg', 'assets/images/flyers/nightClub1.jpeg', 'assets/images/flyers/nightClub2.jpeg', 'assets/images/flyers/nightClub3.jpeg', 'assets/images/flyers/nightClub4.jpeg', 'assets/images/flyers/nightClub5.jpeg'] },
@@ -22,9 +23,9 @@ window.MD_GALLERY = {
       { title: 'Flyers Animados', items: ['assets/images/flyers/motionProfesional1.mp4', 'assets/images/flyers/motionProfesional2.mp4', 'assets/images/flyers/motionProfesional3.mp4', 'assets/images/flyers/motionProfesional4.mp4', 'assets/images/flyers/motionflyer.mp4', 'assets/images/flyers/motion2.mp4'] },
       { title: 'Spots con Locución', items: ['assets/images/flyers/motionPremium1.mp4', 'assets/images/flyers/motionPremium2.mp4', 'assets/images/flyers/motiomPremium3.mp4', 'assets/images/flyers/motionPremiun4.mp4', 'assets/images/flyers/motionPremiun5.mp4'] },
       { title: 'Motion Esencial', items: ['assets/images/flyers/motionBasic1.mp4', 'assets/images/flyers/motionBasic2.mp4', 'assets/images/flyers/motionBasic3.mp4', 'assets/images/flyers/motionBasic4.mp4', 'assets/images/flyers/motionBasic.mp4'] },
-      { title: 'Branding en Movimiento', items: ['assets/images/flyers/Final.mp4', 'assets/images/flyers/Visumed.mp4', 'assets/images/flyers/vip.mp4'] },
-      { title: 'Animación de Logo', items: ['assets/images/flyers/logo-converted.mp4', 'assets/images/flyers/Logp2.mp4', 'assets/images/flyers/Logo3.mp4'] },
-      { title: 'Visuales para Eventos (VJ)', items: ['assets/images/flyers/Visual1.mp4', 'assets/images/flyers/Visual2.mp4'] }
+      { title: 'Branding en Movimiento', landscape: true, items: ['assets/images/flyers/Final.mp4', 'assets/images/flyers/Visumed.mp4', 'assets/images/flyers/vip.mp4'] },
+      { title: 'Animación de Logo', landscape: true, items: ['assets/images/flyers/logo-converted.mp4', 'assets/images/flyers/Logp2.mp4', 'assets/images/flyers/Logo3.mp4'] },
+      { title: 'Visuales para Eventos (VJ)', landscape: true, items: ['assets/images/flyers/Visual1.mp4', 'assets/images/flyers/Visual2.mp4'] }
     ]
   },
   'social-media': {
