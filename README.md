@@ -96,6 +96,14 @@ Asegúrate de tener instalado:
 
 ---
 
+## 🖼️ Galería administrable (Supabase)
+
+Las imágenes y vídeos de la galería se gestionan desde `admin.html` (subir, ordenar, ocultar, mover, borrar),
+guardados en Supabase. Puesta en marcha y uso: [`supabase/README.md`](supabase/README.md).
+Sin configurar, la web usa los datos locales de `assets/js/gallery-data.js`.
+
+---
+
 ## 📁 Estructura del Proyecto
 
 ```

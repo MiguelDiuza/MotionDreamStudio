@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Galería · Panel · Motion Dreams</title>
+  <link rel="shortcut icon" type="image/svg+xml" href="assets/images/logos/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <style>
+    :root {
+      --red: #F20F0F;
+      --red-dark: #c80a0a;
+      --ink: #1F2A2E;
+      --ink-70: rgba(31, 42, 46, .7);
+      --ink-60: rgba(31, 42, 46, .6);
+      --line: rgba(31, 42, 46, .12);
+      --bg: #F4F8FA;
+      --card: #fff;
+      --ok: #137a3a;
+      --radius: 8px;
+      --radius-lg: 16px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      font-family: "Manrope", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    button, input, select { font: inherit; color: inherit; }
+    [hidden] { display: none !important; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    :focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
+
+    /* ---------- botones ---------- */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+      min-height: 40px; padding: .5rem 1rem;
+      border: 1px solid var(--line); border-radius: var(--radius);
+      background: var(--card); cursor: pointer; font-weight: 600;
+      text-decoration: none; white-space: nowrap;
+    }
+    .btn:hover { border-color: var(--ink-60); }
+    .btn:disabled { opacity: .45; cursor: not-allowed; }
+    .btn-primary { background: var(--red); border-color: var(--red); color: #fff; }
+    .btn-primary:hover { background: var(--red-dark); border-color: var(--red-dark); }
+    .btn-dark { background: var(--ink); border-color: var(--ink); color: #fff; }
+    .btn-icon { min-width: 36px; min-height: 36px; padding: .25rem; }
+    .btn-danger:hover { border-color: var(--red); color: var(--red); }
+    iconify-icon { font-size: 1.1em; }
+
+    /* ---------- pantallas sueltas (login, estados) ---------- */
+    .screen {
+      min-height: 100vh; display: grid; place-items: center; padding: 1.5rem 1rem;
+    }
+    .panel {
+      width: 100%; max-width: 400px; background: var(--card);
+      border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 2rem;
+    }
+    .panel img.logo { height: 32px; margin-bottom: 1.5rem; }
+    .panel h1 { font-size: 1.5rem; margin: 0 0 .25rem; }
+    .panel p { margin: 0 0 1.5rem; color: var(--ink-70); }
+    .panel code { background: var(--bg); padding: .1rem .35rem; border-radius: 4px; font-size: .9em; }
+    .field { display: flex; flex-direction: column; gap: .35rem; margin-bottom: 1rem; }
+    .field label { font-weight: 600; font-size: .9rem; }
+    .input {
+      width: 100%; min-height: 44px; padding: .6rem .8rem;
+      border: 1px solid var(--line); border-radius: var(--radius); background: #fff;
+    }
+    .input:focus { border-color: var(--ink); }
+    .form-error { color: var(--red); font-weight: 600; min-height: 1.5em; margin: 0 0 .75rem; }
+    .panel .btn { width: 100%; }
+
+    /* ---------- app ---------- */
+    .topbar {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+      padding: .75rem 1.5rem; background: var(--card); border-bottom: 1px solid var(--line);
+    }
+    .topbar img { height: 28px; }
+    .topbar .title { font-weight: 800; margin-right: auto; }
+    .topbar .who { color: var(--ink-60); font-size: .9rem; }
+
+    main { max-width: 1200px; margin: 0 auto; padding: 1.5rem; }
+
+    .tabs { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .tab {
+      min-height: 40px; padding: .5rem 1rem; border-radius: 999px;
+      border: 1px solid var(--line); background: var(--card); cursor: pointer; font-weight: 700;
+    }
+    .tab[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+    .tab .count { font-weight: 500; opacity: .7; margin-left: .25rem; }
+
+    .cat-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .cat-head h2 { margin: 0; font-size: 1.5rem; }
+    .cat-head p { margin: .15rem 0 0; color: var(--ink-70); }
+
+    .new-group {
+      display: flex; gap: .5rem; flex-wrap: wrap; align-items: center;
+      background: var(--card); border: 1px dashed var(--line); border-radius: var(--radius-lg);
+      padding: 1rem; margin-bottom: 1.5rem;
+    }
+    .new-group .input { flex: 1 1 220px; width: auto; }
+    .check { display: inline-flex; align-items: center; gap: .4rem; cursor: pointer; font-weight: 600; font-size: .9rem; }
+    .check input { width: 18px; height: 18px; accent-color: var(--red); }
+
+    .group {
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg);
+      padding: 1rem 1rem 1.25rem; margin-bottom: 1.25rem;
+    }
+    .group-head { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .group-head .input { flex: 1 1 220px; width: auto; font-weight: 700; font-size: 1.05rem; }
+    .group-head .meta { color: var(--ink-60); font-size: .85rem; }
+    .group-tools { display: flex; gap: .35rem; margin-left: auto; }
+
+    .drop {
+      display: flex; align-items: center; justify-content: center; gap: .75rem; flex-wrap: wrap;
+      border: 2px dashed var(--line); border-radius: var(--radius); padding: 1rem;
+      color: var(--ink-70); text-align: center; margin-bottom: 1rem; cursor: pointer;
+    }
+    .drop.over { border-color: var(--red); background: rgba(242, 15, 15, .04); color: var(--ink); }
+    .drop small { display: block; color: var(--ink-60); }
+    .drop input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+
+    .uploads { list-style: none; margin: 0 0 1rem; padding: 0; display: grid; gap: .35rem; }
+    .uploads li { display: flex; justify-content: space-between; gap: 1rem; font-size: .9rem; padding: .35rem .6rem; background: var(--bg); border-radius: 6px; }
+    .uploads .ok { color: var(--ok); font-weight: 700; }
+    .uploads .err { color: var(--red); font-weight: 700; }
+
+    .items { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: .75rem; }
+    .group.landscape .items { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+    .item { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--bg); display: flex; flex-direction: column; }
+    .thumb { position: relative; aspect-ratio: 4 / 5; background: #e9eef1; }
+    .group.landscape .thumb { aspect-ratio: 16 / 9; }
+    .thumb img, .thumb video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .item.hidden-item .thumb { opacity: .4; }
+    .badge {
+      position: absolute; top: .4rem; left: .4rem; padding: .1rem .5rem; border-radius: 999px;
+      font-size: .75rem; font-weight: 700; background: var(--ink); color: #fff;
+    }
+    .badge.video { left: auto; right: .4rem; background: rgba(31, 42, 46, .75); }
+    .item-tools { display: flex; gap: .25rem; padding: .4rem; flex-wrap: wrap; background: var(--card); border-top: 1px solid var(--line); }
+    .item-tools .btn { min-height: 32px; min-width: 32px; padding: .2rem; flex: 1 0 auto; }
+    .item-tools select { flex: 1 1 100%; min-height: 32px; border: 1px solid var(--line); border-radius: 6px; background: #fff; font-size: .8rem; padding: 0 .3rem; }
+
+    .empty { color: var(--ink-60); padding: 1rem; text-align: center; }
+    .loading { color: var(--ink-60); padding: 3rem 1rem; text-align: center; }
+
+    .toast {
+      position: fixed; left: 50%; bottom: 1.25rem; transform: translateX(-50%);
+      background: var(--ink); color: #fff; padding: .7rem 1.1rem; border-radius: var(--radius);
+      font-weight: 600; max-width: calc(100vw - 2rem); z-index: 50;
+    }
+    .toast.error { background: var(--red); }
+
+    @media (max-width: 600px) {
+      .topbar { padding: .75rem 1rem; }
+      .topbar .who { display: none; }
+      main { padding: 1rem; }
+      .items { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .group.landscape .items { grid-template-columns: 1fr; }
+      .group-tools { margin-left: 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Supabase no configurado -->
+  <div class="screen" id="viewConfig" hidden>
+    <div class="panel">
+      <img class="logo" src="assets/images/logos/logo-dark.svg" alt="Motion Dreams">
+      <h1>Falta configurar Supabase</h1>
+      <p>Rellena <code>url</code> y <code>anonKey</code> en <code>assets/js/md-config.js</code> y recarga esta página.
+        Los pasos están en <code>supabase/README.md</code>.</p>
+    </div>
+  </div>
+
+  <!-- Login -->
+  <div class="screen" id="viewLogin" hidden>
+    <form class="panel" id="loginForm" novalidate>
+      <img class="logo" src="assets/images/logos/logo-dark.svg" alt="Motion Dreams">
+      <h1>Panel de galería</h1>
+      <p>Entra con tu cuenta de administrador.</p>
+      <div class="field">
+        <label for="email">Email</label>
+        <input class="input" id="email" type="email" autocomplete="username" required>
+      </div>
+      <div class="field">
+        <label for="password">Contraseña</label>
+        <input class="input" id="password" type="password" autocomplete="current-password" required>
+      </div>
+      <p class="form-error" id="loginError" role="alert"></p>
+      <button class="btn btn-primary" type="submit" id="loginBtn">Entrar</button>
+    </form>
+  </div>
+
+  <!-- Usuario sin permiso -->
+  <div class="screen" id="viewDenied" hidden>
+    <div class="panel">
+      <img class="logo" src="assets/images/logos/logo-dark.svg" alt="Motion Dreams">
+      <h1>Sin permiso</h1>
+      <p>Tu usuario (<strong id="deniedEmail"></strong>) no está en la lista de administradores de la galería.
+        Pide que lo añadan en Supabase (tabla <code>gallery_admins</code>).</p>
+      <button class="btn" type="button" data-action="logout">Cerrar sesión</button>
+    </div>
+  </div>
+
+  <!-- App -->
+  <div id="viewApp" hidden>
+    <header class="topbar">
+      <img src="assets/images/logos/logo-dark.svg" alt="Motion Dreams">
+      <span class="title">Galería</span>
+      <span class="who" id="whoami"></span>
+      <a class="btn" id="viewSiteLink" href="gallery.html" target="_blank" rel="noopener">
+        <iconify-icon icon="lucide:external-link" aria-hidden="true"></iconify-icon>Ver en la web
+      </a>
+      <button class="btn" type="button" data-action="logout">
+        <iconify-icon icon="lucide:log-out" aria-hidden="true"></iconify-icon>Salir
+      </button>
+    </header>
+    <main>
+      <div class="tabs" role="tablist" aria-label="Categorías" id="tabs"></div>
+      <section id="category" role="tabpanel" aria-live="polite"></section>
+    </main>
+  </div>
+
+  <div class="loading" id="viewLoading">Cargando…</div>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+  <script src="assets/js/md-config.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+
+</html>
