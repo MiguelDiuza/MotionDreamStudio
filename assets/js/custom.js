@@ -64,6 +64,9 @@ $(function () {
     });
 
 
+    // Año del copyright siempre actualizado
+    document.querySelectorAll('.md-year').forEach(function (el) { el.textContent = new Date().getFullYear(); });
+
     // ScrollToTop
     function scrollToTop() {
         window.scrollTo({
