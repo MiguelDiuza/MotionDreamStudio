@@ -17,3 +17,6 @@
 // Utilities style (Required file)
 @import "./utilities/icon-size";
 @import "./utilities/override"; 
+
+// Rediseño Motion Dreams (debe ir al final: sobrescribe lo anterior)
+@import "./pages/md-redesign";

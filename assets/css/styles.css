@@ -20765,3 +20765,15 @@ body {
   .md-gal-item:hover,
   .resources-img:hover { transform: none !important; }
 }
+/* Foco visible para quien navega con teclado, en todo el sitio.
+   (El reboot global pone outline:0 en :focus y solo algunos botones lo recuperaban.) */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--md-red, #F20F0F) !important;
+  outline-offset: 3px;
+}
