@@ -115,7 +115,8 @@ motion_dreamStudio/
 │   │   ├── projects.html       # Portafolio de proyectos
 │   │   ├── projects-detail.html # Detalle de proyectos
 │   │   ├── contact.html        # Página de contacto
-│   │   └── blog.html           # Blog
+│   │   ├── gallery.html        # Galería completa por categoría
+│   │   └── admin.html          # Panel de la galería (Supabase)
 │   │
 │   ├── assets/
 │   │   ├── scss/               # Archivos fuente SASS
