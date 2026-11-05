@@ -20646,7 +20646,7 @@ body {
   .pricing-section .card .border-top > .d-flex { gap: 12px !important; }
   .pricing-section .card ul.list-unstyled { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px !important; }
   .pricing-section .card ul.list-unstyled li { gap: 8px !important; }
-  .pricing-section .card ul.list-unstyled li h6 { font-size: .72rem; line-height: 1.25; }
+  .pricing-section .card ul.list-unstyled li h6, .pricing-section .card ul.list-unstyled li .h6 { font-size: .72rem; line-height: 1.25; }
   .pricing-section .card ul.list-unstyled li .round-32 { width: 20px; height: 20px; }
   .pricing-section .card ul.list-unstyled li .round-32 iconify-icon { font-size: .7rem; }
   .pricing-section .card .btn { min-height: 44px; }
@@ -20777,3 +20777,30 @@ textarea:focus-visible {
   outline: 2px solid var(--md-red, #F20F0F) !important;
   outline-offset: 3px;
 }
+
+/* Enlace "Saltar al contenido": invisible hasta que se navega con teclado */
+.md-skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 2000;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #fff;
+  color: #1F2A2E;
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform .2s ease;
+}
+.md-skip-link:focus { transform: translateY(0); }
+#main:focus, #main:focus-visible { outline: none !important; }
+
+/* Contraste: números e iconos sobre círculos rojos (#F20F0F).
+   El gris #1F2A2E daba 3.39:1; el negro da 4.9:1 (AA). */
+.page-wrapper .bg-primary.rounded-circle,
+.page-wrapper .bg-primary.rounded-circle.text-dark,
+.page-wrapper .bg-primary.rounded-circle .text-dark { color: #000 !important; }
+
+/* Palabras de la banda de Nosotros: ahora son <p class="h4"> (no son títulos) */
+.page-wrapper .about-img p.h4 { color: var(--md-text) !important; }
